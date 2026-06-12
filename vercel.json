@@ -4,6 +4,13 @@
   "outputDirectory": "dist",
   "installCommand": "npm install --legacy-peer-deps",
   "framework": null,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/lesson/:id", "destination": "/lesson/[id]" },
+    { "source": "/letter/:id", "destination": "/letter/[id]" },
+    { "source": "/world/:slug", "destination": "/world/[slug]" }
+  ],
   "headers": [
     {
       "source": "/service-worker.js",
