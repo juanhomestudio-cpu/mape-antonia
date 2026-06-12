@@ -1,15 +1,37 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from 'expo-router';
-import { useColorScheme } from 'react-native';
+import { DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { Stack } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import { QueryClientProvider } from '@tanstack/react-query';
 
-import { AnimatedSplashOverlay } from '@/components/animated-icon';
-import AppTabs from '@/components/app-tabs';
+import { Brand } from '@/constants/theme';
+import { AuthProvider } from '@/lib/auth-provider';
+import { queryClient } from '@/lib/query-client';
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+const navTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: Brand.bone,
+    card: Brand.bone,
+    text: Brand.brownDark,
+    primary: Brand.terracotta,
+    border: Brand.sand,
+    notification: Brand.terracotta,
+  },
+};
+
+export default function RootLayout() {
+  // V1: modo claro forzado. Ignoramos useColorScheme.
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <AnimatedSplashOverlay />
-      <AppTabs />
+    <ThemeProvider value={navTheme}>
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <StatusBar style="dark" />
+          <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: Brand.bone } }}>
+            <Stack.Screen name="(tabs)" />
+          </Stack>
+        </AuthProvider>
+      </QueryClientProvider>
     </ThemeProvider>
   );
 }

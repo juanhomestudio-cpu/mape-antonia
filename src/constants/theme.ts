@@ -1,40 +1,68 @@
 /**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
+ * Sistema de diseño · Academia Funcional de la Mujer
+ *
+ * Paleta y tokens definidos en el documento de producto (sección 3.2).
+ * Estética: orgánica, femenina, elegante, emocional, cálida, premium.
+ * V1: modo claro forzado (Colors.dark = Colors.light) — el documento exige
+ * estética premium femenina que no encaja con dark mode automático.
  */
 
 import '@/global.css';
 
 import { Platform } from 'react-native';
 
+/** Paleta de marca · doc sección 3.2 */
+export const Brand = {
+  bone: '#FBF8F3',        // Fondo base — Blanco hueso
+  beigeWarm: '#EFE7DA',   // Fondos suaves — Beige cálido
+  beigeLight: '#F7F2EA',  // Tarjetas — Beige claro
+  sand: '#C9B79C',        // Bordes — Arena
+  brownDark: '#6B5848',   // Texto fuerte — Marrón claro (es oscuro a pesar del nombre)
+  sageDark: '#5C6A4D',    // Texto secundario — Salvia oscuro
+  sage: '#7C8A6B',        // Color común / estructura — Verde salvia
+  eucalyptus: '#8FA68E',  // Acento Mape (mente) — Verde eucalipto
+  terracotta: '#B5673F',  // Acento Antonia (cuerpo) — Terracota suave
+  rose: '#C9A9A0',        // Acento emocional — Rosado apagado
+  white: '#FFFFFF',
+  shadow: 'rgba(107, 88, 72, 0.08)',
+} as const;
+
+/**
+ * Tokens por voz. Aplican al borde de tarjeta, badge de "voz", botón
+ * secundario y viñete del player de video.
+ */
+export const VoiceTokens = {
+  antonia: { accent: Brand.terracotta, soft: '#EBD6CB', label: 'Antonia · el cuerpo' },
+  mape:    { accent: Brand.eucalyptus, soft: '#D9E2D7', label: 'Mape · la mente'    },
+  ambas:   { accent: Brand.sage,       soft: Brand.beigeWarm, label: 'A dos voces'  },
+} as const;
+
+export type Voice = keyof typeof VoiceTokens;
+
+/**
+ * Colors mantiene el mismo shape que usan ThemedText/ThemedView de la
+ * plantilla. dark = light deliberadamente: V1 fuerza modo claro.
+ */
+const palette = {
+  text: Brand.brownDark,
+  background: Brand.bone,
+  backgroundElement: Brand.beigeLight,
+  backgroundSelected: Brand.beigeWarm,
+  textSecondary: Brand.sageDark,
+} as const;
+
 export const Colors = {
-  light: {
-    text: '#000000',
-    background: '#ffffff',
-    backgroundElement: '#F0F0F3',
-    backgroundSelected: '#E0E1E6',
-    textSecondary: '#60646C',
-  },
-  dark: {
-    text: '#ffffff',
-    background: '#000000',
-    backgroundElement: '#212225',
-    backgroundSelected: '#2E3135',
-    textSecondary: '#B0B4BA',
-  },
+  light: palette,
+  dark: palette,
 } as const;
 
 export type ThemeColor = keyof typeof Colors.light & keyof typeof Colors.dark;
 
 export const Fonts = Platform.select({
   ios: {
-    /** iOS `UIFontDescriptorSystemDesignDefault` */
     sans: 'system-ui',
-    /** iOS `UIFontDescriptorSystemDesignSerif` */
-    serif: 'ui-serif',
-    /** iOS `UIFontDescriptorSystemDesignRounded` */
+    serif: 'ui-serif',       // Títulos premium con serif del sistema
     rounded: 'ui-rounded',
-    /** iOS `UIFontDescriptorSystemDesignMonospaced` */
     mono: 'ui-monospace',
   },
   default: {
@@ -59,6 +87,13 @@ export const Spacing = {
   four: 24,
   five: 32,
   six: 64,
+} as const;
+
+export const Radius = {
+  sm: 8,
+  md: 14,
+  lg: 22,
+  pill: 999,
 } as const;
 
 export const BottomTabInset = Platform.select({ ios: 50, android: 80 }) ?? 0;

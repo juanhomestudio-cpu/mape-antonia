@@ -1,0 +1,26 @@
+{
+  "name": "Academia Funcional · Mape y Antonia",
+  "short_name": "Mape Antonia",
+  "description": "Un viaje para volver a ti, con la Dra. Antonia Cardona y Mape.",
+  "lang": "es",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FBF8F3",
+  "theme_color": "#B5673F",
+  "icons": [
+    {
+      "src": "/assets/images/icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
