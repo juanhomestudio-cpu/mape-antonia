@@ -121,16 +121,18 @@ export default function LessonScreen() {
       <SafeAreaView style={{ flex: 1 }} edges={['top', 'bottom']}>
         <Stack.Screen options={{ headerShown: false }} />
 
-        {/* Header — chevron-izquierda en círculo a la izquierda, SANTUARIO centrado */}
+        {/* Header — "Volver" a la izquierda con chevron + texto, SANTUARIO centrado absoluto */}
         <View style={styles.header}>
           <Pressable
             onPress={goBackToWorld}
             hitSlop={12}
-            style={({ pressed }) => [styles.backBtn, pressed && { opacity: 0.7, transform: [{ scale: 0.95 }] }]}>
-            <SymbolView name="chevron.left" tintColor={Brand.primaryBrown} size={20} />
+            style={({ pressed }) => [styles.backBtn, pressed && { opacity: 0.6 }]}>
+            <SymbolView name="chevron.left" tintColor={Brand.charcoal} size={20} />
+            <ThemedText style={styles.backLabel}>Volver</ThemedText>
           </Pressable>
-          <ThemedText style={styles.brandTitle}>SANTUARIO</ThemedText>
-          <View style={styles.headerSide} />
+          <ThemedText style={[styles.brandTitle, styles.brandTitleCentered]}>
+            SANTUARIO
+          </ThemedText>
         </View>
 
         <View style={styles.animatedShell}>
@@ -269,28 +271,37 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: Brand.bone },
   header: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: Spacing.four,
     paddingTop: Spacing.three,
     paddingBottom: Spacing.three,
+    minHeight: 44,
   },
-  headerSide: { width: 40 },
   backBtn: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'rgba(255,255,255,0.6)',
-    borderWidth: 1,
-    borderColor: 'rgba(113,87,63,0.12)',
+    gap: 2,
+    paddingVertical: Spacing.one,
+    paddingRight: Spacing.three,
+    zIndex: 2,
+  },
+  backLabel: {
+    fontFamily: Fonts.sans,
+    fontSize: 16,
+    color: Brand.charcoal,
   },
   brandTitle: {
     fontFamily: Fonts.sansSemiBold,
     fontSize: 13,
     color: Brand.primaryBrown,
     letterSpacing: 4,
+  },
+  brandTitleCentered: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    textAlign: 'center',
+    zIndex: 1,
   },
   animatedShell: { flex: 1, overflow: 'hidden' },
   animatedInner: { flex: 1 },

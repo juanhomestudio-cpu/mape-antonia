@@ -2,8 +2,7 @@ import { Fragment } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { router } from 'expo-router';
 
-import { ThemedText } from '@/components/themed-text';
-import { Brand, Fonts, Radius, Spacing, VoiceTokens, type Voice } from '@/constants/theme';
+import { Brand, Spacing, VoiceTokens, type Voice } from '@/constants/theme';
 import { deriveLessonStatuses, type LessonProgress } from '@/services/progress';
 import type { Lesson } from '@/services/content';
 
@@ -15,31 +14,17 @@ type Props = {
 };
 
 /**
- * Navegador inferior entre las clases del mundo actual. Muestra una fila
- * de "constelación" — 8 nodos conectados con una línea fina, cada uno con
- * estado visual (completado / en curso / disponible / bloqueado).
- * Tap en un nodo no bloqueado → router.replace a esa clase.
+ * Navegador inferior entre las clases del mundo actual. Sólo los nodos
+ * (sin texto): "constelación" mínima de 8 puntos conectados con una
+ * línea, cada uno con estado visual. Tap → router.replace a esa clase.
  */
 export function LessonNavigator({ lessons, currentId, progress, voice }: Props) {
   const accent = VoiceTokens[voice].accent;
   const sorted = [...lessons].sort((a, b) => a.position - b.position);
   const statuses = deriveLessonStatuses(sorted, progress);
-  const currentIdx = sorted.findIndex((l) => l.id === currentId);
-  const currentLesson = currentIdx >= 0 ? sorted[currentIdx] : null;
 
   return (
     <View style={styles.shell}>
-      <View style={styles.header}>
-        <ThemedText type="caps" style={styles.eyebrow}>
-          Clase {currentIdx + 1} de {sorted.length}
-        </ThemedText>
-        {currentLesson && (
-          <ThemedText style={styles.lessonTitle} numberOfLines={1}>
-            "{currentLesson.title}"
-          </ThemedText>
-        )}
-      </View>
-
       <View style={styles.row}>
         {statuses.map((s, i) => {
           const isCurrent = s.id === currentId;
@@ -69,7 +54,7 @@ export function LessonNavigator({ lessons, currentId, progress, voice }: Props) 
                   tappable &&
                   router.replace({ pathname: '/lesson/[id]', params: { id: s.id } })
                 }
-                hitSlop={8}
+                hitSlop={12}
                 style={({ pressed }) => [
                   styles.dotWrap,
                   pressed && tappable && { opacity: 0.6 },
@@ -108,25 +93,13 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: 'rgba(113,87,63,0.08)',
     paddingHorizontal: Spacing.four,
-    paddingTop: Spacing.three,
-    paddingBottom: Spacing.three,
-    gap: Spacing.three,
-    // Sutil blur fake con sombra hacia arriba
+    paddingTop: Spacing.four,
+    paddingBottom: Spacing.four,
     shadowColor: Brand.primaryBrown,
     shadowOpacity: 0.06,
     shadowRadius: 20,
     shadowOffset: { width: 0, height: -8 },
     elevation: 8,
-  },
-  header: { gap: 4, alignItems: 'center' },
-  eyebrow: { color: Brand.primaryBrown, opacity: 0.6, letterSpacing: 2 },
-  lessonTitle: {
-    fontFamily: Fonts.sans,
-    fontStyle: 'italic',
-    fontSize: 13,
-    color: Brand.textSoft,
-    maxWidth: 280,
-    textAlign: 'center',
   },
   row: {
     flexDirection: 'row',
@@ -135,12 +108,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.two,
   },
   connector: { flex: 1, height: 1, marginHorizontal: 2 },
-  dotWrap: { width: 24, height: 24, alignItems: 'center', justifyContent: 'center' },
+  dotWrap: { width: 28, height: 28, alignItems: 'center', justifyContent: 'center' },
   halo: {
     position: 'absolute',
-    width: 24,
-    height: 24,
-    borderRadius: 12,
+    width: 28,
+    height: 28,
+    borderRadius: 14,
     opacity: 0.18,
   },
   dot: {
