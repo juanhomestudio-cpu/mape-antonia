@@ -47,6 +47,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   chipOn: { backgroundColor: Brand.terracotta, borderColor: Brand.terracotta },
-  label: { fontSize: 13, color: Brand.brownDark },
+  label: { fontSize: 13, color: Brand.charcoal },
   labelOn: { color: Brand.white, fontWeight: '500' },
 });

@@ -31,8 +31,8 @@ export default function TabsLayout() {
   return (
     <NativeTabs
       backgroundColor={Brand.bone}
-      indicatorColor={Brand.beigeWarm}
-      labelStyle={{ selected: { color: Brand.brownDark } }}>
+      indicatorColor={Brand.surfaceMid}
+      labelStyle={{ selected: { color: Brand.charcoal } }}>
       <NativeTabs.Trigger name="index">
         <Label>Inicio</Label>
         <Icon sf={{ default: 'house', selected: 'house.fill' }} androidSrc={tabIcon} />

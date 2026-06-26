@@ -31,7 +31,7 @@ export function ProfileHeader({ displayName, email }: Props) {
         onPress={() => router.push('/settings')}
         hitSlop={12}
         style={({ pressed }) => [styles.settingsBtn, pressed && { opacity: 0.6 }]}>
-        <SymbolView name="gearshape" tintColor={Brand.sageDark} size={22} />
+        <SymbolView name="gearshape" tintColor={Brand.textSoft} size={22} />
       </Pressable>
     </View>
   );
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
   avatarText: { color: Brand.white, fontSize: 22, fontWeight: '500' },
   info: { flex: 1 },
-  name: { color: Brand.brownDark, fontSize: 20, lineHeight: 24 },
-  email: { color: Brand.sageDark, fontSize: 13, marginTop: 2 },
+  name: { color: Brand.charcoal, fontSize: 20, lineHeight: 24 },
+  email: { color: Brand.textSoft, fontSize: 13, marginTop: 2 },
   settingsBtn: { padding: Spacing.one },
 });

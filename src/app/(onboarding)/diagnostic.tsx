@@ -62,7 +62,7 @@ export default function DiagnosticScreen() {
   if (isLoading || !current) {
     return (
       <SafeAreaView style={styles.container} edges={['top']}>
-        <ThemedText style={{ color: Brand.sageDark }}>Cargando…</ThemedText>
+        <ThemedText style={{ color: Brand.textSoft }}>Cargando…</ThemedText>
       </SafeAreaView>
     );
   }
@@ -85,9 +85,9 @@ export default function DiagnosticScreen() {
                 <Card
                   style={[
                     styles.option,
-                    isSelected && { borderColor: Brand.terracotta, backgroundColor: Brand.beigeWarm },
+                    isSelected && { borderColor: Brand.terracotta, backgroundColor: Brand.surfaceMid },
                   ]}>
-                  <ThemedText style={[styles.optionLabel, isSelected && { color: Brand.brownDark }]}>
+                  <ThemedText style={[styles.optionLabel, isSelected && { color: Brand.charcoal }]}>
                     {opt.label}
                   </ThemedText>
                 </Card>
@@ -115,12 +115,12 @@ const styles = StyleSheet.create({
   eyebrow: {
     textTransform: 'uppercase',
     letterSpacing: 2,
-    color: Brand.sageDark,
+    color: Brand.textSoft,
     marginBottom: Spacing.three,
   },
-  title: { color: Brand.brownDark, marginBottom: Spacing.four, fontSize: 24, lineHeight: 32 },
+  title: { color: Brand.charcoal, marginBottom: Spacing.four, fontSize: 24, lineHeight: 32 },
   options: { gap: Spacing.two },
   option: { padding: Spacing.three, borderRadius: Radius.lg },
-  optionLabel: { fontSize: 16, color: Brand.brownDark, lineHeight: 22 },
+  optionLabel: { fontSize: 16, color: Brand.charcoal, lineHeight: 22 },
   footer: { padding: Spacing.four, paddingBottom: Spacing.three },
 });

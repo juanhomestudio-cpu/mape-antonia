@@ -1,0 +1,310 @@
+<!DOCTYPE html><html class="light" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>Santuario - Clase: El Cortisol</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Work+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#d2c4ba",
+                        "sand-neutral": "#F5F2ED",
+                        "on-primary-container": "#fffbff",
+                        "on-secondary-fixed": "#1a1c1a",
+                        "on-tertiary-fixed-variant": "#374956",
+                        "tertiary-container": "#647786",
+                        "secondary-fixed": "#e3e2e0",
+                        "surface-tint": "#735941",
+                        "surface-bright": "#fff8f5",
+                        "primary-container": "#8b6f56",
+                        "charcoal-text": "#333333",
+                        "surface-container-low": "#faf2ee",
+                        "secondary": "#5e5f5d",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#f4ece8",
+                        "primary-fixed": "#ffdcbf",
+                        "secondary-container": "#e0e0dd",
+                        "on-secondary-container": "#626361",
+                        "secondary-fixed-dim": "#c7c6c4",
+                        "inverse-on-surface": "#f7efeb",
+                        "on-secondary-fixed-variant": "#464745",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#4c5e6c",
+                        "antonia-terracotta": "#C17B5E",
+                        "primary": "#71573f",
+                        "on-surface": "#1e1b19",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#b5c9d9",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#d1e5f6",
+                        "on-surface-variant": "#4f453d",
+                        "surface": "#fff8f5",
+                        "inverse-primary": "#e2c0a3",
+                        "on-tertiary-container": "#fcfcff",
+                        "primary-fixed-dim": "#e2c0a3",
+                        "on-background": "#1e1b19",
+                        "surface-container-highest": "#e8e1dd",
+                        "background": "#fff8f5",
+                        "outline": "#80756c",
+                        "mape-eucalyptus": "#5F7464",
+                        "surface-dim": "#e0d9d5",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#eee7e3",
+                        "on-tertiary-fixed": "#091d2a",
+                        "inverse-surface": "#33302d",
+                        "on-primary-fixed-variant": "#5a422c",
+                        "on-primary-fixed": "#291805",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e8e1dd",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "4rem",
+                        "safe-margin": "2rem",
+                        "stack-md": "1.5rem",
+                        "gutter": "1.5rem",
+                        "stack-sm": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Work Sans"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "body-md": ["Work Sans"],
+                        "headline-lg": ["Playfair Display"],
+                        "body-lg": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "1.4", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "headline-md": ["28px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-lg": ["42px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.7", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .atmospheric-bg {
+            background: linear-gradient(135deg, #fff8f5 0%, #F5F2ED 50%, #e8e1dd 100%);
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+        }
+
+        .liquid-mask {
+            mask-image: radial-gradient(circle, black 50%, transparent 100%);
+        }
+
+        .reflection-line {
+            background: linear-gradient(to right, transparent, #80756c, transparent);
+            height: 1px;
+            width: 100%;
+            opacity: 0.3;
+        }
+
+        .fade-in {
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .breath-pulse {
+            animation: breathe 8s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 0.4; }
+            50% { transform: scale(1.05); opacity: 0.6; }
+        }
+
+        .video-container {
+            box-shadow: 0 40px 100px -20px rgba(113, 87, 63, 0.15);
+        }
+        
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d2c4ba;
+            border-radius: 10px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface selection:bg-primary/20 overflow-x-hidden">
+<!-- Atmospheric Background -->
+<div class="atmospheric-bg">
+<div class="absolute inset-0 opacity-40 mix-blend-multiply overflow-hidden">
+</div>
+<!-- Soft glowing orbs for intimacy -->
+<div class="absolute top-1/4 -left-20 w-96 h-96 bg-antonia-terracotta/10 rounded-full blur-[100px] breath-pulse"></div>
+<div class="absolute bottom-1/4 -right-20 w-80 h-80 bg-mape-eucalyptus/10 rounded-full blur-[100px] breath-pulse" style="animation-delay: -4s;"></div>
+</div>
+<!-- Top Navigation Anchor -->
+<header class="fixed top-0 w-full z-50 backdrop-blur-md bg-background/30 px-safe-margin py-stack-md flex justify-between items-center">
+<button class="text-primary hover:opacity-70 transition-opacity active:scale-95 duration-500 ease-out" onclick="history.back()">
+<span class="material-symbols-outlined text-3xl">arrow_back</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile tracking-[0.2em] text-primary uppercase">Santuario</h1>
+<div class="flex items-center gap-stack-sm">
+<button class="text-primary hover:opacity-70 transition-opacity">
+<span class="material-symbols-outlined">ios_share</span>
+</button>
+</div>
+</header>
+<main class="relative min-h-screen pt-32 pb-40 px-safe-margin max-w-[1100px] mx-auto flex flex-col items-center">
+<!-- Architectural Title Section -->
+<section class="w-full text-center mb-stack-md fade-in backdrop-blur-sm bg-background/30 rounded-[2rem] py-stack-md" style="animation-delay: 0.2s;">
+<p class="font-label-caps text-label-caps text-antonia-terracotta uppercase tracking-[0.3em] mb-stack-sm">Mundo 2: Entenderme</p>
+<h2 class="font-headline-lg text-headline-lg text-primary tracking-tighter leading-tight">Clase: El Cortisol</h2>
+<div class="flex items-center justify-center gap-2 mt-stack-sm text-on-surface-variant font-body-md italic opacity-60">
+<span>con Antonia Cardona</span>
+<span class="w-1 h-1 rounded-full bg-outline"></span>
+<span>7:12</span>
+</div>
+</section>
+<!-- Floating Video Player -->
+<section class="w-full aspect-video md:aspect-[21/9] video-container rounded-[2.5rem] overflow-hidden relative fade-in z-10" style="animation-delay: 0.4s;">
+<div class="absolute inset-0 bg-surface-container-lowest flex items-center justify-center">
+<img alt="Antonia Cardona speaking warmly" class="w-full h-full object-cover opacity-90 transition-transform duration-[10s] hover:scale-105" data-alt="A close-up, intimate portrait of a woman with warm features and soft lighting, sitting in a serene studio filled with natural light, linen textures, and lush green plants. The color palette is composed of desaturated terracottas, warm sands, and soft eucalyptus greens, creating a deeply human and sophisticated atmosphere of professional medical guidance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuNq-gKDg1JLE1H7XcMd08nPVLfr4jnr1_NyV2yohB49k8A2PyKlU2DTkbDzeBsJdjYZoxDnMqZnBVXH8p9lhu12Fm2QRGtuEcXjYycgmNCu3--NrfqJvxKmarNxRJLQKPgMDgG__KXl3tlClDX0YBaHOTPkxWIIPXLihajowh83DcoIQzfUe8xemDn7mhKx_JN2_VP-BD5vqk3hI4a1FdCSi80B_ka1LJvkiuwORSjkCgZ5_793LbLuKlPcTQ63CfnwNWsnNAOw">
+<!-- Play Overlay -->
+<div class="absolute inset-0 flex items-center justify-center bg-black/10 hover:bg-black/20 transition-colors group cursor-pointer">
+<div class="w-20 h-20 rounded-full border border-white/40 flex items-center justify-center backdrop-blur-sm group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-white text-5xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<!-- Video Progress -->
+<div class="absolute bottom-0 left-0 w-full px-10 py-6 bg-gradient-to-t from-black/40 to-transparent">
+<div class="w-full h-[2px] bg-white/20 rounded-full overflow-hidden">
+<div class="h-full bg-antonia-terracotta w-1/3 shadow-[0_0_10px_rgba(193,123,94,0.5)]"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Intimate Dialogue & Insight -->
+<section class="mt-section-gap max-w-2xl w-full text-center space-y-stack-md fade-in backdrop-blur-sm bg-background/30 rounded-[2rem] p-8" style="animation-delay: 0.6s;">
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                "Tu cuerpo nunca estuvo fallando. El cortisol es simplemente un lenguaje que tu sistema aprendió para protegerte, pero hoy vamos a empezar a reentrenarlo."
+            </p>
+<div class="flex justify-center">
+<span class="material-symbols-outlined text-antonia-terracotta opacity-30 text-4xl">ecg_heart</span>
+</div>
+</section>
+<!-- Quick Reflection - Dissolved UI -->
+<section class="mt-section-gap w-full max-w-xl fade-in bg-sand-neutral/20 backdrop-blur-md rounded-[2.5rem] p-10 border border-white/20" style="animation-delay: 0.8s;">
+<div class="text-center mb-stack-md">
+<h3 class="font-headline-md text-headline-md text-primary opacity-80 mb-2">Una pausa para ti</h3>
+<p class="font-body-md text-body-md text-on-surface-variant italic">¿Qué parte de tu cuerpo se siente hoy más cansada?</p>
+</div>
+<!-- Minimalist Line-based inputs -->
+<div class="space-y-8 relative">
+<div class="relative group">
+<textarea class="w-full bg-transparent border-0 border-b border-outline-variant focus:ring-0 focus:border-antonia-terracotta transition-colors py-4 px-0 font-body-lg text-primary resize-none placeholder:text-outline-variant/50 px-4" oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'" placeholder="Escribe lo que sientes aquí..." rows="1"></textarea>
+</div>
+<div class="reflection-line"></div>
+<div class="flex justify-center pt-stack-sm">
+<button class="bg-primary text-on-primary font-label-caps text-label-caps px-12 py-5 rounded-full hover:opacity-90 active:scale-95 transition-all duration-300 shadow-xl shadow-primary/20">
+                        CONTINUAR MI CAMINO
+                    </button>
+</div>
+</div>
+</section>
+<!-- Recommended Ritual (Small Card) -->
+<section class="mt-section-gap w-full flex flex-col md:flex-row gap-gutter fade-in" style="animation-delay: 1s;">
+<div class="flex-1 bg-sand-neutral/30 backdrop-blur-xl p-8 rounded-[2rem] border border-white/40 flex items-center gap-stack-md group cursor-pointer hover:bg-white/50 transition-all duration-500">
+<div class="w-16 h-16 rounded-full bg-antonia-terracotta/20 flex items-center justify-center text-antonia-terracotta">
+<span class="material-symbols-outlined text-3xl">air</span>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-antonia-terracotta uppercase">Ritual Desbloqueado</p>
+<h4 class="font-headline-md text-headline-md text-primary text-xl">Respiración 4-7-8</h4>
+</div>
+<span class="material-symbols-outlined ml-auto text-primary group-hover:translate-x-2 transition-transform">chevron_right</span>
+</div>
+<div class="flex-1 bg-sand-neutral/30 backdrop-blur-xl p-8 rounded-[2rem] border border-white/40 flex items-center gap-stack-md group cursor-pointer hover:bg-white/50 transition-all duration-500">
+<div class="w-16 h-16 rounded-full bg-mape-eucalyptus/20 flex items-center justify-center text-mape-eucalyptus">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">history_edu</span>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-mape-eucalyptus uppercase">Carta a mi Futura Yo</p>
+<h4 class="font-headline-md text-headline-md text-primary text-xl">Desde el cansancio</h4>
+</div>
+<span class="material-symbols-outlined ml-auto text-primary group-hover:translate-x-2 transition-transform">chevron_right</span>
+</div>
+</section>
+</main>
+<!-- Navigation Shell (Only shown if applicable) -->
+<nav class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex gap-gutter px-gutter py-stack-sm items-center backdrop-blur-xl bg-sand-neutral/20 shadow-[0_20px_50px_rgba(113,87,63,0.15)] rounded-full">
+<a class="flex items-center justify-center text-on-surface-variant w-12 h-12 hover:scale-110 transition-transform duration-700 active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined">adjust</span>
+</a>
+<a class="flex items-center justify-center bg-primary text-on-primary rounded-full w-12 h-12 shadow-lg shadow-primary/40 hover:scale-110 transition-transform duration-700 active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">spa</span>
+</a>
+<a class="flex items-center justify-center text-on-surface-variant w-12 h-12 hover:scale-110 transition-transform duration-700 active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined">auto_awesome_mosaic</span>
+</a>
+<a class="flex items-center justify-center text-on-surface-variant w-12 h-12 hover:scale-110 transition-transform duration-700 active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined">radio_button_checked</span>
+</a>
+</nav>
+<!-- Micro-interaction Scripts -->
+<script>
+        // Soft focus for text area lines
+        const reflectionInputs = document.querySelectorAll('textarea');
+        reflectionInputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.nextElementSibling.style.opacity = '1';
+                input.parentElement.nextElementSibling.style.background = 'linear-gradient(to right, transparent, #C17B5E, transparent)';
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.nextElementSibling.style.opacity = '0.3';
+                input.parentElement.nextElementSibling.style.background = 'linear-gradient(to right, transparent, #80756c, transparent)';
+            });
+        });
+
+        // Intersection Observer for fade-in effects on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body></html>

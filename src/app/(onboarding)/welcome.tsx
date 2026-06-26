@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     color: Brand.terracotta,
     marginBottom: Spacing.three,
   },
-  title: { color: Brand.brownDark, marginBottom: Spacing.three, fontSize: 32, lineHeight: 38 },
-  subtitle: { color: Brand.sageDark, lineHeight: 26, fontSize: 16 },
+  title: { color: Brand.charcoal, marginBottom: Spacing.three, fontSize: 32, lineHeight: 38 },
+  subtitle: { color: Brand.textSoft, lineHeight: 26, fontSize: 16 },
   footer: { gap: Spacing.one, paddingBottom: Spacing.three },
 });

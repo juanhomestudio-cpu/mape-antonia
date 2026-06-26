@@ -49,7 +49,7 @@ export function LessonRow({ lesson, status, position }: Props) {
           <SymbolView name="play.circle.fill" tintColor={accent} size={26} />
         )}
         {status === 'available' && (
-          <SymbolView name="arrow.right.circle" tintColor={Brand.brownDark} size={26} />
+          <SymbolView name="arrow.right.circle" tintColor={Brand.charcoal} size={26} />
         )}
         {isLocked && <LockBadge />}
       </View>
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: Spacing.three,
-    backgroundColor: Brand.beigeLight,
+    backgroundColor: Brand.surfaceLow,
     borderRadius: Radius.md,
     borderWidth: 1,
     borderColor: Brand.sand,
@@ -79,10 +79,10 @@ const styles = StyleSheet.create({
   left: { width: 32, alignItems: 'center' },
   center: { flex: 1, gap: 2 },
   right: { width: 36, alignItems: 'flex-end' },
-  position: { fontSize: 13, color: Brand.sageDark, fontVariant: ['tabular-nums'] },
-  title: { fontSize: 16, color: Brand.brownDark, fontWeight: '500' },
-  subtitle: { fontSize: 13, color: Brand.sageDark },
+  position: { fontSize: 13, color: Brand.textSoft, fontVariant: ['tabular-nums'] },
+  title: { fontSize: 16, color: Brand.charcoal, fontWeight: '500' },
+  subtitle: { fontSize: 13, color: Brand.textSoft },
   meta: { flexDirection: 'row', alignItems: 'center', gap: Spacing.one, marginTop: Spacing.one },
   voiceDot: { width: 6, height: 6, borderRadius: 3 },
-  metaText: { fontSize: 11, color: Brand.sageDark, textTransform: 'uppercase', letterSpacing: 0.6 },
+  metaText: { fontSize: 11, color: Brand.textSoft, textTransform: 'uppercase', letterSpacing: 0.6 },
 });

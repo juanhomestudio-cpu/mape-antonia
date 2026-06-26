@@ -129,7 +129,7 @@ export function VimeoPlayer({
 const styles = StyleSheet.create({
   container: {
     aspectRatio: 16 / 9,
-    backgroundColor: Brand.brownDark,
+    backgroundColor: Brand.charcoal,
     borderRadius: Radius.md,
     overflow: 'hidden',
   },

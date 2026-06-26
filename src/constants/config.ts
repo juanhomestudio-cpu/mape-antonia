@@ -7,12 +7,17 @@ export const VIDEO_COMPLETE_PCT = 90;
 
 export const STREAK_THRESHOLDS = [3, 7, 21, 30] as const;
 
+/**
+ * 5 estados de ánimo del check-in.
+ * Orden visual de izquierda a derecha (de "más turbio" a "más conectado").
+ * `sfSymbol` aplica al ícono en iOS (mismo set de Material Symbols del diseño).
+ */
 export const MOOD_OPTIONS = [
-  { value: 'luminosa', label: 'Luminosa', emoji: '☀️' },
-  { value: 'calma',    label: 'En calma', emoji: '🌿' },
-  { value: 'neutral',  label: 'Neutral',  emoji: '◯'  },
-  { value: 'turbia',   label: 'Turbia',   emoji: '🌫'  },
-  { value: 'agotada',  label: 'Agotada',  emoji: '🌒' },
+  { value: 'agotada',  label: 'Agotada',  sfSymbol: 'cloud.fill',          tint: '#80756C' },
+  { value: 'calma',    label: 'En calma', sfSymbol: 'wind',                tint: '#5F7464' },
+  { value: 'luminosa', label: 'Vital',    sfSymbol: 'sun.max.fill',        tint: '#D49B5D' },
+  { value: 'turbia',   label: 'Inquieta', sfSymbol: 'water.waves',         tint: '#7B91A6' },
+  { value: 'neutral',  label: 'Conectada', sfSymbol: 'sparkles',           tint: '#C17B5E' },
 ] as const;
 
 export type MoodValue = (typeof MOOD_OPTIONS)[number]['value'];

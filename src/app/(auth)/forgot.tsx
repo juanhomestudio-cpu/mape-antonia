@@ -84,6 +84,6 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: Brand.bone },
   scroll: { padding: Spacing.four, paddingTop: Spacing.five },
   header: { marginBottom: Spacing.five },
-  title: { color: Brand.brownDark, marginBottom: Spacing.three },
-  subtitle: { color: Brand.sageDark, lineHeight: 24 },
+  title: { color: Brand.charcoal, marginBottom: Spacing.three },
+  subtitle: { color: Brand.textSoft, lineHeight: 24 },
 });

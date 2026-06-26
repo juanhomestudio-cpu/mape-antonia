@@ -1,0 +1,343 @@
+<!DOCTYPE html><html class="light" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>Santuario - Mi Camino</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Work+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#d2c4ba",
+                        "sand-neutral": "#F5F2ED",
+                        "on-primary-container": "#fffbff",
+                        "on-secondary-fixed": "#1a1c1a",
+                        "on-tertiary-fixed-variant": "#374956",
+                        "tertiary-container": "#647786",
+                        "secondary-fixed": "#e3e2e0",
+                        "surface-tint": "#735941",
+                        "surface-bright": "#fff8f5",
+                        "primary-container": "#8b6f56",
+                        "charcoal-text": "#333333",
+                        "surface-container-low": "#faf2ee",
+                        "secondary": "#5e5f5d",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#f4ece8",
+                        "primary-fixed": "#ffdcbf",
+                        "secondary-container": "#e0e0dd",
+                        "on-secondary-container": "#626361",
+                        "secondary-fixed-dim": "#c7c6c4",
+                        "inverse-on-surface": "#f7efeb",
+                        "on-secondary-fixed-variant": "#464745",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#4c5e6c",
+                        "antonia-terracotta": "#C17B5E",
+                        "primary": "#71573f",
+                        "on-surface": "#1e1b19",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#b5c9d9",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#d1e5f6",
+                        "on-surface-variant": "#4f453d",
+                        "surface": "#fff8f5",
+                        "inverse-primary": "#e2c0a3",
+                        "on-tertiary-container": "#fcfcff",
+                        "primary-fixed-dim": "#e2c0a3",
+                        "on-background": "#1e1b19",
+                        "surface-container-highest": "#e8e1dd",
+                        "background": "#fff8f5",
+                        "outline": "#80756c",
+                        "mape-eucalyptus": "#5F7464",
+                        "surface-dim": "#e0d9d5",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#eee7e3",
+                        "on-tertiary-fixed": "#091d2a",
+                        "inverse-surface": "#33302d",
+                        "on-primary-fixed-variant": "#5a422c",
+                        "on-primary-fixed": "#291805",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e8e1dd",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "4rem",
+                        "safe-margin": "2rem",
+                        "stack-md": "1.5rem",
+                        "gutter": "1.5rem",
+                        "stack-sm": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Work Sans"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "body-md": ["Work Sans"],
+                        "headline-lg": ["Playfair Display"],
+                        "body-lg": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "1.4", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "headline-md": ["28px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-lg": ["42px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.7", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        @keyframes flow-glow {
+            0%, 100% { opacity: 0.4; transform: scale(1); filter: blur(10px); }
+            50% { opacity: 0.9; transform: scale(1.3); filter: blur(15px); }
+        }
+        @keyframes path-pulse {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.6; box-shadow: 0 0 10px rgba(113, 87, 63, 0.4); }
+        }
+        @keyframes soft-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes parallax-subtle {
+            from { transform: translateY(0); }
+            to { transform: translateY(-50px); }
+        }
+        
+        .active-node-glow {
+            animation: flow-glow 4s ease-in-out infinite;
+        }
+        .path-line {
+            background: linear-gradient(to bottom, transparent, rgba(113, 87, 63, 0.2) 20%, rgba(113, 87, 63, 0.4) 50%, rgba(113, 87, 63, 0.2) 80%, transparent);
+            animation: path-pulse 4s ease-in-out infinite;
+        }
+        .orb-float {
+            animation: soft-float 6s ease-in-out infinite;
+        }
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+            transition: all 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal-on-scroll.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        .active-orb-touch:active {
+            transform: scale(1.1);
+            filter: brightness(1.2) drop-shadow(0 0 15px rgba(193, 123, 94, 0.8));
+            transition: all 0.3s ease-out;
+        }
+        .depth-layer {
+            will-change: transform;
+        }
+        
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #fff8f5;
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface overflow-x-hidden selection:bg-primary/20">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 backdrop-blur-md bg-background/30 flex justify-between items-center px-safe-margin py-stack-md border-b border-outline-variant/10">
+<button class="material-symbols-outlined text-primary hover:opacity-70 transition-opacity active:scale-95 duration-500 ease-out" data-icon="menu">menu</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile tracking-[0.2em] text-primary uppercase">SANTUARIO</h1>
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden border border-outline-variant active:scale-95 transition-transform">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_67laoWkc5CZrE5N6lCtZDVS-GgINFZuVuaLQvve6qCeIOaNax-pUtSgkk4a3elK9D-p7D7vhS_Gbm7eyQFWHwlDhCRtxJe4H7FGUqQtQ7DwGi_FUAiKMqobv5zTEFwaqMvdiSV76bSznELXx8zzxEI4N7_1M9Hg5lFBAAwUQqJhoQgxM07JnZh3hvKIcqF2Q4bTT10d3G6HmBESG0NVwXDC7ZK4KCQqRnaQutDX7IfIwqtxb0TjMl4S7Bd3RJORn1yw29imTBg">
+</div>
+</header>
+<!-- Atmospheric Depth Background Layers -->
+<div class="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background"></div>
+<!-- Parallax Depth Orbs -->
+<div class="depth-layer absolute top-[20%] -left-20 w-80 h-80 bg-primary/5 rounded-full blur-[80px]" data-speed="0.05"></div>
+<div class="depth-layer absolute top-[60%] -right-20 w-96 h-96 bg-antonia-terracotta/5 rounded-full blur-[100px]" data-speed="0.08"></div>
+<div class="depth-layer absolute top-[80%] left-1/3 w-64 h-64 bg-mape-eucalyptus/5 rounded-full blur-[70px]" data-speed="0.12"></div>
+</div>
+<!-- Evolutionary Map Content -->
+<main class="relative pt-32 pb-48 px-safe-margin flex flex-col items-center min-h-screen">
+<!-- The Path Line -->
+<svg class="absolute left-0 top-32 w-full h-full -z-10 pointer-events-none" preserveAspectRatio="none" viewBox="0 0 400 2000">
+<defs>
+<linearGradient id="pathGradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#71573f" stop-opacity="0.2"></stop>
+<stop offset="20%" stop-color="#71573f" stop-opacity="0.6"></stop>
+<stop offset="50%" stop-color="#C17B5E" stop-opacity="0.8"></stop>
+<stop offset="80%" stop-color="#5F7464" stop-opacity="0.6"></stop>
+<stop offset="100%" stop-color="#5F7464" stop-opacity="0.2"></stop>
+</linearGradient>
+</defs>
+<path class="opacity-40" d="M 200 0 Q 250 200 200 400 T 200 800 T 200 1200 T 200 1600" fill="none" stroke="url(#pathGradient)" stroke-dasharray="8,8" stroke-width="2"></path>
+</svg>
+<!-- Progress Indicator -->
+<div class="fixed top-24 left-1/2 -translate-x-1/2 z-40 bg-sand-neutral/80 backdrop-blur-lg px-6 py-2 rounded-full border border-outline-variant/30 reveal-on-scroll active">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.2em] uppercase">Mi Camino · Fase 1</span>
+</div>
+<!-- Node: Start -->
+<div class="relative z-10 mt-12 flex flex-col items-center reveal-on-scroll">
+<div class="w-2.5 h-2.5 rounded-full bg-primary mb-4 shadow-sm"></div>
+<p class="font-label-caps text-label-caps text-on-surface-variant tracking-[0.3em] uppercase opacity-70">El Comienzo</p>
+</div>
+<!-- World 1: Un umbral de silencio (ACTIVE) -->
+<section class="relative w-full max-w-lg mt-section-gap mb-section-gap flex flex-col items-center reveal-on-scroll"><div class="mb-4 flex flex-col items-center gap-2">
+<div class="w-32 h-1.5 bg-antonia-terracotta/10 rounded-full overflow-hidden">
+<div class="h-full w-full bg-antonia-terracotta rounded-full"></div>
+</div>
+<span class="font-label-caps text-[9px] tracking-widest text-antonia-terracotta uppercase">Completado</span>
+</div>
+<!-- Glowing Anchor / Interactive Orb -->
+<div class="relative w-16 h-16 flex items-center justify-center mb-8 orb-float">
+<div class="absolute inset-0 bg-antonia-terracotta/30 rounded-full blur-xl active-node-glow"></div>
+<div class="relative z-10 w-4 h-4 bg-antonia-terracotta rounded-full shadow-[0_0_20px_rgba(193,123,94,0.7)] active-orb-touch cursor-pointer transition-transform duration-500"></div>
+</div>
+<div class="text-center">
+<span class="font-label-caps text-label-caps text-antonia-terracotta mb-3 block tracking-widest uppercase">Mundo 1</span>
+<h2 class="font-headline-md text-headline-md text-primary mb-6">Un umbral de silencio</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xs mx-auto italic leading-relaxed opacity-90">
+                    "El inicio de la relación con el cuerpo, las emociones y la identidad."
+                </p>
+</div>
+<!-- Path Controls -->
+<div class="mt-stack-md">
+<button class="group flex flex-col items-center gap-5 transition-all duration-700 hover:scale-105 active:scale-95">
+<div class="px-10 py-4 bg-primary text-on-primary rounded-full font-label-caps text-label-caps tracking-[0.15em] shadow-2xl shadow-primary/30 transition-all hover:bg-primary/90 hover:scale-105">
+                        CONTINUAR MI CAMINO
+                    </div>
+<span class="text-on-surface-variant text-[10px] opacity-50 font-body-md tracking-[0.2em] uppercase">Clase 1: El despertar</span>
+</button>
+</div>
+</section>
+<!-- World 2: Entenderme (Locked) -->
+<section class="relative w-full max-w-lg mt-section-gap mb-section-gap flex flex-col items-center reveal-on-scroll"><div class="mb-4 flex flex-col items-center gap-2">
+<div class="w-32 h-1.5 bg-primary/10 rounded-full overflow-hidden">
+<div class="h-full w-1/3 bg-primary rounded-full"></div>
+</div>
+<span class="font-label-caps text-[9px] tracking-widest text-primary/60 uppercase">4 de 12 clases</span>
+</div>
+<div class="w-4 h-4 border border-primary/30 rounded-full mb-8 flex items-center justify-center shadow-sm">
+<div class="w-1 h-1 bg-primary/20 rounded-full"></div>
+</div>
+<div class="text-center opacity-70">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-2 block tracking-widest uppercase">Mundo 2</span>
+<h2 class="font-headline-md text-headline-md text-primary mb-6">Entenderme</h2>
+<div class="flex items-center justify-center gap-2 text-on-surface-variant/40">
+<span class="material-symbols-outlined text-sm" data-icon="lock">lock</span>
+<span class="font-label-caps text-label-caps tracking-widest text-[10px]">CONTENIDO BLOQUEADO</span>
+</div>
+</div>
+</section>
+<!-- Dynamic Element: Subtle Visual Anchor -->
+<div class="relative w-full h-[400px] flex items-center justify-center reveal-on-scroll">
+<div class="absolute w-64 h-64 border border-outline-variant/10 rounded-full orb-float" style="animation-delay: -2s;"></div>
+<div class="absolute w-40 h-40 bg-sand-neutral/20 rounded-full backdrop-blur-[2px] flex items-center justify-center border border-white/30 orb-float" style="animation-delay: -1s;">
+<span class="material-symbols-outlined text-primary/30 scale-150" data-icon="auto_awesome">auto_awesome</span>
+</div>
+</div>
+<!-- World 3: Habitarme -->
+<section class="relative w-full max-w-lg mt-section-gap mb-section-gap flex flex-col items-center reveal-on-scroll"><div class="mb-4 flex flex-col items-center gap-2">
+<div class="w-32 h-1.5 bg-on-surface-variant/5 rounded-full overflow-hidden">
+<div class="h-full w-0 bg-on-surface-variant/20 rounded-full"></div>
+</div>
+<span class="font-label-caps text-[9px] tracking-widest text-on-surface-variant/30 uppercase">Bloqueado</span>
+</div>
+<div class="w-3 h-3 border border-primary/20 rounded-full mb-8 shadow-sm"></div>
+<div class="text-center opacity-50">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-2 block tracking-widest uppercase">Mundo 3</span>
+<h2 class="font-headline-md text-headline-md text-primary">Habitarme</h2>
+</div>
+</section>
+<!-- Asymmetric Detail Cards -->
+<div class="w-full max-w-4xl mt-32 grid grid-cols-1 md:grid-cols-2 gap-gutter px-4 reveal-on-scroll">
+<div class="bg-white/50 backdrop-blur-2xl p-10 rounded-[2rem] border border-white/80 shadow-[0_8px_30px_rgb(0,0,0,0.02)] flex flex-col justify-between h-72 hover:shadow-lg transition-all duration-500">
+<div>
+<span class="material-symbols-outlined text-antonia-terracotta mb-6 text-3xl" data-icon="history_edu">history_edu</span>
+<h3 class="font-headline-md text-primary text-2xl mb-3">Carta a mi futura yo</h3>
+<p class="text-on-surface-variant text-base font-body-md leading-relaxed opacity-80">¿Qué necesita escuchar la mujer que serás en unos meses?</p>
+</div>
+<button class="font-label-caps text-label-caps text-antonia-terracotta text-left hover:translate-x-2 transition-transform tracking-widest uppercase text-[11px]">ESCRIBIR MEMORIA →</button>
+</div>
+<div class="bg-sand-neutral/50 backdrop-blur-2xl p-10 rounded-[2rem] border border-primary/5 shadow-[0_8px_30px_rgb(0,0,0,0.02)] flex flex-col justify-between h-72 md:translate-y-16 hover:shadow-lg transition-all duration-500">
+<div>
+<span class="material-symbols-outlined text-mape-eucalyptus mb-6 text-3xl" data-icon="spa">spa</span>
+<h3 class="font-headline-md text-primary text-2xl mb-3">Rituales de Regulación</h3>
+<p class="text-on-surface-variant text-base font-body-md leading-relaxed opacity-80">Breathwork y micro-hábitos para regresar a la calma.</p>
+</div>
+<button class="font-label-caps text-label-caps text-mape-eucalyptus text-left hover:translate-x-2 transition-transform tracking-widest uppercase text-[11px]">VER BIBLIOTECA →</button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex gap-4 px-6 py-3 items-center backdrop-blur-2xl bg-white/20 shadow-[0_25px_60px_rgba(113,87,63,0.12)] rounded-full border border-white/40">
+<a class="flex items-center justify-center bg-primary text-on-primary rounded-full w-12 h-12 shadow-xl shadow-primary/30 hover:scale-110 active:scale-90 transition-all duration-500" href="#">
+<span class="material-symbols-outlined" data-icon="adjust">adjust</span>
+</a>
+<a class="flex items-center justify-center text-primary/60 w-12 h-12 hover:scale-110 active:scale-90 hover:text-primary transition-all duration-500" href="#">
+<span class="material-symbols-outlined" data-icon="spa">spa</span>
+</a>
+<a class="flex items-center justify-center text-primary/60 w-12 h-12 hover:scale-110 active:scale-90 hover:text-primary transition-all duration-500" href="#">
+<span class="material-symbols-outlined" data-icon="auto_awesome_mosaic">auto_awesome_mosaic</span>
+</a>
+<a class="flex items-center justify-center text-primary/60 w-12 h-12 hover:scale-110 active:scale-90 hover:text-primary transition-all duration-500" href="#">
+<span class="material-symbols-outlined" data-icon="radio_button_checked">radio_button_checked</span>
+</a>
+</nav>
+<script>
+        // Advanced Reveal on scroll logic
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+        // Atmospheric Parallax Depth Effect
+        const depthLayers = document.querySelectorAll('.depth-layer');
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            
+            depthLayers.forEach(layer => {
+                const speed = parseFloat(layer.getAttribute('data-speed')) || 0.1;
+                const yPos = -(scrolled * speed);
+                layer.style.transform = `translateY(${yPos}px)`;
+            });
+
+            // Subtle path stretch effect
+            const path = document.querySelector('.path-line');
+            if (path) {
+                path.style.opacity = 0.2 + (Math.sin(scrolled / 500) * 0.1);
+            }
+        });
+
+        // Touch interaction for active nodes
+        document.querySelectorAll('.active-orb-touch').forEach(orb => {
+            orb.addEventListener('touchstart', function() {
+                this.classList.add('scale-125');
+            });
+            orb.addEventListener('touchend', function() {
+                this.classList.remove('scale-125');
+            });
+        });
+    </script>
+</body></html>

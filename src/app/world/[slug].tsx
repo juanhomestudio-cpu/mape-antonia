@@ -29,12 +29,12 @@ export default function WorldScreen() {
       <Stack.Screen options={{ headerShown: false }} />
       <ScrollView contentContainerStyle={styles.scroll}>
         <Pressable onPress={() => router.back()} style={styles.back} hitSlop={12}>
-          <SymbolView name="chevron.left" tintColor={Brand.brownDark} size={22} />
+          <SymbolView name="chevron.left" tintColor={Brand.charcoal} size={22} />
           <ThemedText style={styles.backText}>Mi camino</ThemedText>
         </Pressable>
 
         {worldLoading || !world ? (
-          <ThemedText style={{ color: Brand.sageDark }}>Cargando…</ThemedText>
+          <ThemedText style={{ color: Brand.textSoft }}>Cargando…</ThemedText>
         ) : (
           <>
             <ThemedText style={styles.eyebrow}>Mundo {world.position}</ThemedText>
@@ -56,7 +56,7 @@ export default function WorldScreen() {
             <ThemedText style={styles.sectionTitle}>Las clases</ThemedText>
             <View style={styles.list}>
               {lessonsLoading ? (
-                <ThemedText style={{ color: Brand.sageDark }}>Cargando…</ThemedText>
+                <ThemedText style={{ color: Brand.textSoft }}>Cargando…</ThemedText>
               ) : (
                 statuses.map((s) => {
                   const lesson = lessons.find((l) => l.id === s.id)!;
@@ -82,21 +82,21 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: Brand.bone },
   scroll: { padding: Spacing.four, paddingBottom: Spacing.six },
   back: { flexDirection: 'row', alignItems: 'center', gap: Spacing.one, marginBottom: Spacing.four },
-  backText: { color: Brand.brownDark, fontSize: 15 },
+  backText: { color: Brand.charcoal, fontSize: 15 },
   eyebrow: {
     textTransform: 'uppercase',
     letterSpacing: 2,
-    color: Brand.sageDark,
+    color: Brand.textSoft,
     marginBottom: Spacing.two,
   },
   title: { marginBottom: Spacing.two, fontSize: 30, lineHeight: 36 },
-  subtitle: { color: Brand.sageDark, lineHeight: 22, fontSize: 15, marginBottom: Spacing.three },
+  subtitle: { color: Brand.textSoft, lineHeight: 22, fontSize: 15, marginBottom: Spacing.three },
   headerMeta: { flexDirection: 'row', marginBottom: Spacing.four },
   progressWrap: { gap: Spacing.one, marginBottom: Spacing.five },
-  progressLabel: { fontSize: 12, color: Brand.sageDark },
+  progressLabel: { fontSize: 12, color: Brand.textSoft },
   sectionTitle: {
     fontSize: 13,
-    color: Brand.sageDark,
+    color: Brand.textSoft,
     textTransform: 'uppercase',
     letterSpacing: 1.5,
     marginBottom: Spacing.three,

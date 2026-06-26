@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   wrap: { gap: Spacing.one, marginBottom: Spacing.three },
   label: {
     fontSize: 13,
-    color: Brand.sageDark,
+    color: Brand.textSoft,
     textTransform: 'uppercase',
     letterSpacing: 1.2,
   },
@@ -53,11 +53,11 @@ const styles = StyleSheet.create({
     borderRadius: Radius.md,
     borderWidth: 1,
     borderColor: Brand.sand,
-    backgroundColor: Brand.beigeLight,
-    color: Brand.brownDark,
+    backgroundColor: Brand.surfaceLow,
+    color: Brand.charcoal,
     fontSize: 16,
   },
   inputError: { borderColor: Brand.terracotta },
-  helper: { fontSize: 12, color: Brand.sageDark, marginTop: 2 },
+  helper: { fontSize: 12, color: Brand.textSoft, marginTop: 2 },
   helperError: { color: Brand.terracotta },
 });

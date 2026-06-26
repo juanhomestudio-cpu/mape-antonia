@@ -7,12 +7,11 @@ import { SymbolView } from 'expo-symbols';
 import { ThemedText } from '@/components/themed-text';
 import { Button } from '@/components/ui/Button';
 import { KeyboardScrollView } from '@/components/ui/KeyboardScrollView';
-import { ProgressBar } from '@/components/ui/ProgressBar';
-import { VoiceBadge } from '@/components/ui/VoiceBadge';
 import { ReflectionPrompt } from '@/components/lesson/ReflectionPrompt';
 import { VimeoPlayer } from '@/components/lesson/VimeoPlayer';
+import { SanctuaryBackground } from '@/components/home/SanctuaryBackground';
 import { VIDEO_COMPLETE_PCT } from '@/constants/config';
-import { Brand, Spacing, VoiceTokens } from '@/constants/theme';
+import { Brand, Fonts, Radius, Spacing, VoiceTokens } from '@/constants/theme';
 import { useLesson, useLessonsForWorld } from '@/hooks/use-content';
 import {
   useLessonProgress,
@@ -28,16 +27,13 @@ export default function LessonScreen() {
   const startMutation = useStartLesson();
   const updateProgressMutation = useUpdateVideoProgress();
   const submitMicro = useSubmitMicroResponse();
-
   const { data: siblings = [] } = useLessonsForWorld(lesson?.world_id);
 
-  // Crear/recuperar lesson_progress al abrir.
   useEffect(() => {
     if (id) startMutation.mutate(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  // Throttle de updates al server (cada 3s) para no inundar.
   const lastUpdateRef = useRef(0);
   const [localPct, setLocalPct] = useState(0);
 
@@ -54,12 +50,12 @@ export default function LessonScreen() {
   };
 
   const requiredMicro = lesson?.micro_experiences.find((m) => m.is_required) ?? null;
-  const videoDone =
-    Math.max(progress?.video_progress_pct ?? 0, localPct) >= VIDEO_COMPLETE_PCT;
+  const videoDone = Math.max(progress?.video_progress_pct ?? 0, localPct) >= VIDEO_COMPLETE_PCT;
   const microDone = progress?.required_micro_done ?? false;
   const lessonCompleted = progress?.status === 'completed';
-
   const accent = lesson ? VoiceTokens[lesson.voice].accent : Brand.terracotta;
+  const voiceLabel = lesson?.voice === 'antonia' ? 'con Antonia Cardona' : lesson?.voice === 'mape' ? 'con Mape' : 'A dos voces';
+  const durationMin = lesson?.duration_seconds ? Math.round(lesson.duration_seconds / 60) : null;
 
   const onSubmitReflection = (text: string) => {
     if (!requiredMicro || !id) return;
@@ -71,170 +67,231 @@ export default function LessonScreen() {
     });
   };
 
-  // Próxima clase (la primera después de esta que no esté completada).
   const next = siblings
     .sort((a, b) => a.position - b.position)
     .find((l) => lesson && l.position > lesson.position);
 
   return (
-    <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
-      <Stack.Screen options={{ headerShown: false }} />
-      <KeyboardScrollView contentContainerStyle={styles.scroll}>
-        <Pressable
-          onPress={() =>
-            lesson?.world ? router.replace({ pathname: '/world/[slug]', params: { slug: lesson.world.slug } }) : router.back()
-          }
-          style={styles.back}
-          hitSlop={12}>
-          <SymbolView name="chevron.left" tintColor={Brand.brownDark} size={22} />
-          <ThemedText style={styles.backText}>
-            {lesson?.world?.title ?? 'Volver'}
-          </ThemedText>
-        </Pressable>
+    <View style={styles.container}>
+      <SanctuaryBackground />
+      <SafeAreaView style={{ flex: 1 }} edges={['top', 'bottom']}>
+        <Stack.Screen options={{ headerShown: false }} />
 
-        {isLoading || !lesson ? (
-          <ThemedText style={{ color: Brand.sageDark }}>Cargando…</ThemedText>
-        ) : (
-          <>
-            <ThemedText style={styles.eyebrow}>Clase {lesson.position}</ThemedText>
-            <ThemedText type="title" style={[styles.title, { color: accent }]}>
-              {lesson.title}
-            </ThemedText>
-            {lesson.subtitle && (
-              <ThemedText style={styles.subtitle}>{lesson.subtitle}</ThemedText>
-            )}
-            <View style={styles.meta}>
-              <VoiceBadge voice={lesson.voice} />
-            </View>
+        {/* Header */}
+        <View style={styles.header}>
+          <Pressable
+            onPress={() =>
+              lesson?.world
+                ? router.replace({ pathname: '/world/[slug]', params: { slug: lesson.world.slug } })
+                : router.back()
+            }
+            hitSlop={12}
+            style={({ pressed }) => [styles.backBtn, pressed && { opacity: 0.6 }]}>
+            <SymbolView name="arrow.left" tintColor={Brand.primaryBrown} size={26} />
+          </Pressable>
+          <ThemedText style={styles.brandTitle}>SANTUARIO</ThemedText>
+          <View style={styles.backBtn} />
+        </View>
 
-            {lesson.vimeo_id ? (
-              <View style={styles.playerWrap}>
-                <VimeoPlayer
-                  vimeoId={lesson.vimeo_id}
-                  vimeoHash={lesson.vimeo_hash}
-                  onProgress={onVideoProgress}
-                  onEnded={onVideoEnded}
-                  autoplay={false}
-                />
-              </View>
-            ) : (
-              <View style={styles.placeholder}>
-                <ThemedText style={{ color: Brand.beigeLight }}>
-                  Esta clase aún no tiene video.
+        <KeyboardScrollView contentContainerStyle={styles.scroll}>
+          {isLoading || !lesson ? (
+            <ThemedText style={{ color: Brand.textSoft }}>Cargando…</ThemedText>
+          ) : (
+            <>
+              {/* Architectural title */}
+              <View style={styles.titleFrame}>
+                <ThemedText type="caps" style={[styles.titleEyebrow, { color: accent }]}>
+                  {lesson.world?.title ? `Mundo 1: ${lesson.world.title}` : `Clase ${lesson.position}`}
                 </ThemedText>
-              </View>
-            )}
-
-            <View style={styles.progressWrap}>
-              <ProgressBar
-                value={Math.max(progress?.video_progress_pct ?? 0, localPct) / 100}
-                color={accent}
-              />
-              <ThemedText style={styles.progressLabel}>
-                {videoDone ? 'Video visto' : `${Math.round(Math.max(progress?.video_progress_pct ?? 0, localPct))}%`}
-              </ThemedText>
-            </View>
-
-            {__DEV__ && !videoDone && (
-              <Button
-                label="DEV · Marcar video como visto"
-                variant="ghost"
-                onPress={() => {
-                  setLocalPct(100);
-                  if (id) updateProgressMutation.mutate({ lessonId: id, percent: 100 });
-                }}
-              />
-            )}
-
-            {requiredMicro && !microDone && videoDone && (
-              <ReflectionPrompt
-                micro={requiredMicro}
-                submitting={submitMicro.isPending}
-                onSubmit={onSubmitReflection}
-              />
-            )}
-
-            {requiredMicro && !videoDone && (
-              <View style={styles.helperBox}>
-                <ThemedText style={styles.helperText}>
-                  Cuando termines el video, te invitaremos a una reflexión breve antes de continuar.
-                </ThemedText>
-              </View>
-            )}
-
-            {lessonCompleted && (
-              <View style={styles.footer}>
-                <View style={styles.completedRow}>
-                  <SymbolView name="checkmark.seal.fill" tintColor={accent} size={28} />
-                  <ThemedText style={[styles.completedText, { color: accent }]}>
-                    Clase completa
-                  </ThemedText>
+                <ThemedText style={styles.titleHeadline}>{lesson.title}</ThemedText>
+                <View style={styles.titleMetaRow}>
+                  <ThemedText style={styles.titleMeta}>{voiceLabel}</ThemedText>
+                  {durationMin && (
+                    <>
+                      <View style={styles.metaDot} />
+                      <ThemedText style={styles.titleMeta}>{durationMin} min</ThemedText>
+                    </>
+                  )}
                 </View>
-                {next ? (
-                  <Button
-                    label="Continuar a la siguiente"
-                    onPress={() =>
-                      router.replace({ pathname: '/lesson/[id]', params: { id: next.id } })
-                    }
+              </View>
+
+              {/* Video player con borde redondeado generoso */}
+              <View style={styles.playerWrap}>
+                {lesson.vimeo_id ? (
+                  <VimeoPlayer
+                    vimeoId={lesson.vimeo_id}
+                    vimeoHash={lesson.vimeo_hash}
+                    onProgress={onVideoProgress}
+                    onEnded={onVideoEnded}
+                    autoplay={false}
                   />
                 ) : (
-                  <Button
-                    label="Cerraste el Mundo 1"
-                    variant="secondary"
-                    onPress={() =>
-                      lesson.world
-                        ? router.replace({ pathname: '/world/[slug]', params: { slug: lesson.world.slug } })
-                        : router.back()
-                    }
-                  />
+                  <View style={styles.placeholder}>
+                    <ThemedText style={{ color: Brand.surfaceMid }}>
+                      Esta clase aún no tiene video.
+                    </ThemedText>
+                  </View>
                 )}
+                <View style={styles.progressTrack}>
+                  <View
+                    style={[
+                      styles.progressFill,
+                      {
+                        width: `${Math.max(progress?.video_progress_pct ?? 0, localPct)}%`,
+                        backgroundColor: accent,
+                      },
+                    ]}
+                  />
+                </View>
               </View>
-            )}
-          </>
-        )}
-      </KeyboardScrollView>
-    </SafeAreaView>
+
+              {__DEV__ && !videoDone && (
+                <View style={styles.devRow}>
+                  <Button
+                    label="DEV · Marcar visto"
+                    variant="ghost"
+                    onPress={() => {
+                      setLocalPct(100);
+                      if (id) updateProgressMutation.mutate({ lessonId: id, percent: 100 });
+                    }}
+                  />
+                </View>
+              )}
+
+              {/* Reflexión */}
+              {requiredMicro && !microDone && videoDone && (
+                <ReflectionPrompt
+                  micro={requiredMicro}
+                  submitting={submitMicro.isPending}
+                  onSubmit={onSubmitReflection}
+                />
+              )}
+
+              {requiredMicro && !videoDone && (
+                <View style={styles.helperBox}>
+                  <ThemedText style={styles.helperText}>
+                    Cuando termines el video, te invitaremos a una reflexión breve antes de continuar.
+                  </ThemedText>
+                </View>
+              )}
+
+              {/* Cierre */}
+              {lessonCompleted && (
+                <View style={styles.completedBlock}>
+                  <View style={styles.completedRow}>
+                    <SymbolView name="checkmark.seal.fill" tintColor={accent} size={28} />
+                    <ThemedText style={[styles.completedText, { color: accent }]}>
+                      Clase completa
+                    </ThemedText>
+                  </View>
+                  {next ? (
+                    <Button
+                      label="Continuar a la siguiente"
+                      onPress={() => router.replace({ pathname: '/lesson/[id]', params: { id: next.id } })}
+                    />
+                  ) : (
+                    <Button
+                      label="Cerraste el Mundo 1"
+                      variant="secondary"
+                      onPress={() =>
+                        lesson.world
+                          ? router.replace({ pathname: '/world/[slug]', params: { slug: lesson.world.slug } })
+                          : router.back()
+                      }
+                    />
+                  )}
+                </View>
+              )}
+            </>
+          )}
+        </KeyboardScrollView>
+      </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: Brand.bone },
-  scroll: { padding: Spacing.four, paddingBottom: Spacing.six },
-  back: { flexDirection: 'row', alignItems: 'center', gap: Spacing.one, marginBottom: Spacing.three },
-  backText: { color: Brand.brownDark, fontSize: 15 },
-  eyebrow: {
-    textTransform: 'uppercase',
-    letterSpacing: 2,
-    color: Brand.sageDark,
-    marginBottom: Spacing.two,
-  },
-  title: { marginBottom: Spacing.two, fontSize: 28, lineHeight: 34 },
-  subtitle: { color: Brand.sageDark, fontSize: 15, lineHeight: 22, marginBottom: Spacing.three },
-  meta: { flexDirection: 'row', marginBottom: Spacing.four },
-  playerWrap: { marginBottom: Spacing.three },
-  placeholder: {
-    aspectRatio: 16 / 9,
-    backgroundColor: Brand.brownDark,
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 14,
-    marginBottom: Spacing.three,
+    paddingHorizontal: Spacing.four,
+    paddingTop: Spacing.three,
+    paddingBottom: Spacing.three,
   },
-  progressWrap: { gap: Spacing.one, marginBottom: Spacing.three },
-  progressLabel: { fontSize: 12, color: Brand.sageDark },
-  helperBox: {
-    backgroundColor: Brand.beigeWarm,
-    padding: Spacing.three,
-    borderRadius: 14,
-    marginTop: Spacing.three,
+  backBtn: { width: 36, alignItems: 'flex-start' },
+  brandTitle: {
+    fontFamily: Fonts.sansSemiBold,
+    fontSize: 13,
+    color: Brand.primaryBrown,
+    letterSpacing: 4,
   },
-  helperText: { color: Brand.sageDark, fontSize: 14, lineHeight: 20 },
-  footer: { gap: Spacing.three, marginTop: Spacing.four },
-  completedRow: {
+  scroll: { paddingHorizontal: Spacing.four, paddingBottom: Spacing.six * 2 },
+  titleFrame: {
+    paddingHorizontal: Spacing.four,
+    paddingVertical: Spacing.five,
+    backgroundColor: 'rgba(253,252,249,0.45)',
+    borderRadius: Radius.xl,
+    alignItems: 'center',
+    gap: Spacing.two,
+    marginBottom: Spacing.five,
+  },
+  titleEyebrow: { letterSpacing: 2.4 },
+  titleHeadline: {
+    fontFamily: Fonts.serifBold,
+    fontSize: 36,
+    lineHeight: 42,
+    color: Brand.primaryBrown,
+    textAlign: 'center',
+    letterSpacing: -0.5,
+  },
+  titleMetaRow: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: Spacing.two,
+    marginTop: Spacing.two,
+  },
+  titleMeta: {
+    fontFamily: Fonts.sans,
+    fontStyle: 'italic',
+    fontSize: 14,
+    color: Brand.textSoft,
+    opacity: 0.7,
+  },
+  metaDot: { width: 4, height: 4, borderRadius: 2, backgroundColor: Brand.outline },
+  playerWrap: { marginBottom: Spacing.three },
+  placeholder: {
+    aspectRatio: 16 / 9,
+    backgroundColor: Brand.primaryBrown,
+    borderRadius: Radius.xl,
+    alignItems: 'center',
     justifyContent: 'center',
   },
-  completedText: { fontSize: 16, fontWeight: '600' },
+  progressTrack: {
+    height: 2,
+    backgroundColor: 'rgba(113,87,63,0.15)',
+    marginTop: Spacing.two,
+    borderRadius: 1,
+    overflow: 'hidden',
+  },
+  progressFill: { height: '100%', borderRadius: 1 },
+  devRow: { alignItems: 'center', marginBottom: Spacing.three },
+  helperBox: {
+    backgroundColor: 'rgba(245,242,237,0.5)',
+    padding: Spacing.four,
+    borderRadius: Radius.lg,
+    marginTop: Spacing.three,
+  },
+  helperText: {
+    fontFamily: Fonts.sans,
+    fontStyle: 'italic',
+    fontSize: 14,
+    lineHeight: 22,
+    color: Brand.textSoft,
+    textAlign: 'center',
+  },
+  completedBlock: { gap: Spacing.four, marginTop: Spacing.five },
+  completedRow: { flexDirection: 'row', alignItems: 'center', gap: Spacing.two, justifyContent: 'center' },
+  completedText: { fontFamily: Fonts.sansSemiBold, fontSize: 16 },
 });

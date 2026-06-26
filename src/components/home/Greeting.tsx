@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
-import { Brand, Spacing } from '@/constants/theme';
+import { Brand, Fonts, Spacing } from '@/constants/theme';
 
 type Props = {
   displayName?: string;
@@ -14,37 +14,46 @@ function greetingByHour(hour: number) {
   return 'Buenas noches';
 }
 
-function streakLabel(days: number): string {
-  if (days <= 0) return 'Hoy empieza tu camino';
-  if (days < 3) return `día ${days}`;
-  if (days < 7) return `${days} días escuchándote`;
-  if (days < 21) return `${days} días habitándote`;
-  if (days < 30) return `${days} días acompañando tu cuerpo`;
-  return `${days} días conectando contigo`;
-}
-
 export function Greeting({ displayName, streakDays = 0 }: Props) {
   const hour = new Date().getHours();
   const hello = greetingByHour(hour);
   const name = displayName?.split(' ')[0] ?? 'mujer';
+
   return (
     <View style={styles.wrap}>
-      <ThemedText style={styles.streak}>{streakLabel(streakDays)}</ThemedText>
-      <ThemedText type="title" style={styles.greeting}>
-        {hello}, {name}
+      <ThemedText type="caps" style={styles.eyebrow}>
+        {streakDays > 0 ? `Día ${streakDays} · tu espacio seguro` : 'Tu espacio seguro'}
+      </ThemedText>
+      <ThemedText style={styles.greeting} allowFontScaling={false}>
+        {hello},{'\n'}
+        <ThemedText style={styles.name}>{name}</ThemedText>
       </ThemedText>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  wrap: { marginBottom: Spacing.four },
-  streak: {
-    textTransform: 'uppercase',
-    letterSpacing: 1.5,
-    fontSize: 11,
-    color: Brand.terracotta,
-    marginBottom: Spacing.two,
+  wrap: { alignItems: 'center', marginBottom: Spacing.five, gap: Spacing.two },
+  eyebrow: {
+    color: Brand.primaryBrown,
+    opacity: 0.6,
+    textAlign: 'center',
   },
-  greeting: { color: Brand.brownDark, fontSize: 28, lineHeight: 34 },
+  greeting: {
+    fontFamily: Fonts.serif,
+    fontStyle: 'italic',
+    fontSize: 40,
+    lineHeight: 48,
+    color: Brand.primaryBrown,
+    textAlign: 'center',
+    fontWeight: '300',
+  },
+  name: {
+    fontFamily: Fonts.serif,
+    fontStyle: 'italic',
+    fontSize: 40,
+    lineHeight: 48,
+    color: Brand.charcoal,
+    fontWeight: '300',
+  },
 });

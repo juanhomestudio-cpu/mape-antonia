@@ -1,0 +1,313 @@
+<!DOCTYPE html><html class="light" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Santuario - Mundo 1: Un día nací</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Work+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "outline-variant": "#d2c4ba",
+                "sand-neutral": "#F5F2ED",
+                "on-primary-container": "#fffbff",
+                "on-secondary-fixed": "#1a1c1a",
+                "on-tertiary-fixed-variant": "#374956",
+                "tertiary-container": "#647786",
+                "secondary-fixed": "#e3e2e0",
+                "surface-tint": "#735941",
+                "surface-bright": "#fff8f5",
+                "primary-container": "#8b6f56",
+                "charcoal-text": "#333333",
+                "surface-container-low": "#faf2ee",
+                "secondary": "#5e5f5d",
+                "on-tertiary": "#ffffff",
+                "surface-container": "#f4ece8",
+                "primary-fixed": "#ffdcbf",
+                "secondary-container": "#e0e0dd",
+                "on-secondary-container": "#626361",
+                "secondary-fixed-dim": "#c7c6c4",
+                "inverse-on-surface": "#f7efeb",
+                "on-secondary-fixed-variant": "#464745",
+                "on-secondary": "#ffffff",
+                "tertiary": "#4c5e6c",
+                "antonia-terracotta": "#C17B5E",
+                "primary": "#71573f",
+                "on-surface": "#1e1b19",
+                "error-container": "#ffdad6",
+                "tertiary-fixed-dim": "#b5c9d9",
+                "surface-container-lowest": "#ffffff",
+                "on-primary": "#ffffff",
+                "tertiary-fixed": "#d1e5f6",
+                "on-surface-variant": "#4f453d",
+                "surface": "#fff8f5",
+                "inverse-primary": "#e2c0a3",
+                "on-tertiary-container": "#fcfcff",
+                "primary-fixed-dim": "#e2c0a3",
+                "on-background": "#1e1b19",
+                "surface-container-highest": "#e8e1dd",
+                "background": "#fff8f5",
+                "outline": "#80756c",
+                "mape-eucalyptus": "#5F7464",
+                "surface-dim": "#e0d9d5",
+                "on-error": "#ffffff",
+                "surface-container-high": "#eee7e3",
+                "on-tertiary-fixed": "#091d2a",
+                "inverse-surface": "#33302d",
+                "on-primary-fixed-variant": "#5a422c",
+                "on-primary-fixed": "#291805",
+                "on-error-container": "#93000a",
+                "surface-variant": "#e8e1dd",
+                "error": "#ba1a1a"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "section-gap": "4rem",
+                "safe-margin": "2rem",
+                "stack-md": "1.5rem",
+                "gutter": "1.5rem",
+                "stack-sm": "0.75rem"
+            },
+            "fontFamily": {
+                "label-caps": ["Work Sans"],
+                "headline-lg-mobile": ["Playfair Display"],
+                "headline-md": ["Playfair Display"],
+                "body-md": ["Work Sans"],
+                "headline-lg": ["Playfair Display"],
+                "body-lg": ["Work Sans"]
+            },
+            "fontSize": {
+                "label-caps": ["12px", {"lineHeight": "1.4", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                "headline-md": ["28px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "headline-lg": ["42px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                "body-lg": ["18px", {"lineHeight": "1.7", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+
+        .active-glow {
+            text-shadow: 0 0 20px rgba(193, 123, 94, 0.4);
+        }
+
+        .cinematic-blur {
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+        }
+
+        .anchor-float {
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .breath-background {
+            background: linear-gradient(135deg, #fff8f5 0%, #f4ece8 50%, #e8e1dd 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .breath-background::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: -20%;
+            width: 140%;
+            height: 140%;
+            background: radial-gradient(circle, rgba(193, 123, 94, 0.05) 0%, transparent 60%);
+            animation: pulse-glow 15s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            from { transform: scale(1); opacity: 0.3; }
+            to { transform: scale(1.2); opacity: 0.6; }
+        }
+
+        .mask-image-header {
+            mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+        }
+
+        .scroll-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scroll-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md scroll-hide overflow-x-hidden">
+<!-- Top Navigation Anchor (As requested by Hierarchy) -->
+<header class="fixed top-0 w-full z-50 backdrop-blur-md bg-background/30 flex justify-between items-center px-safe-margin py-stack-md">
+<button class="text-primary dark:text-primary-fixed-dim hover:opacity-70 transition-opacity active:scale-95 duration-500 ease-out">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile tracking-[0.2em] text-primary dark:text-primary-fixed-dim uppercase">SANTUARIO</h1>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant hover:opacity-70 transition-opacity">
+<img alt="User" data-alt="A professional close-up portrait of a woman with a serene and thoughtful expression, captured with soft natural lighting in a minimalist setting. The photograph uses a shallow depth of field to focus on her calm eyes, reflecting the intimate and sophisticated mood of the brand. The color palette is warm and organic, featuring soft skin tones and a neutral background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbSSec5smkf3jUfC5XNwScBwJLZnb0Tb7F-epSbrb4B8nBAxHHiI3Xe2gbB-m2ck1ZizZEw6NoQE9rBeHStEbWCdFA2xcK6QqGa4UVOKAKM4j3UHAOv1HJDVulSZvv8yHfZVGS9TlksKx6haC9lVokHF9YqdyrVpjPC93XMs2PeNdR0MudbZpgJghy2K7rlHFxdcfxDkvjnqBzxqQVeg99OJSOiRrHdjfZ298rlQcBPhFaGI9s_wjk7l_Sz5gBYL_Grfv0nWFrdA">
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="min-h-screen breath-background pb-32">
+<!-- Cinematic Header Bleed -->
+<section class="relative h-[618px] w-full overflow-hidden mask-image-header">
+<img alt="Fluid atmosphere" class="w-full h-full object-cover opacity-60 scale-105" data-alt="A cinematic, high-definition background image featuring soft, flowing curtains of translucent fabric in warm earth tones and cream. The scene is illuminated by gentle, dappled sunlight filtering through, creating a peaceful and breathable atmosphere. The visual style is minimal and organic, emphasizing high whitespace and tactile textures like fine linen, perfectly embodying a digital sanctuary." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA551nuCj7LOmXeczC28knXy4fk11bo5t-7_w7GwSOSnIuHTXobVQoovJ9wBnHIH0_gvzioMzAb76Qe0nu_FYAg9x-Eg_023fWwKToiqy7pnQIlzz5_K5i8nIACYKO4MEm_XuP2QbxZUlDlMebHR80q9dsIo1xjcRU8Xn7LaxbK4gGpAqvI0q6EMMARfaa6dk9ZSSBKsjI2KJavYOMUtAaXm2CG-PNleE71MY-bcA-dE0p-PErRjpZE0qxn-UGfO2eUAovJhdVuhA">
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center px-safe-margin mt-16">
+<span class="font-label-caps text-label-caps text-antonia-terracotta mb-stack-sm tracking-[0.3em] uppercase">Mundo 1</span>
+<h2 class="font-headline-lg text-headline-lg text-primary max-w-2xl leading-tight">Un día nací</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg mt-4 font-light italic">
+                    "El inicio de la relación con el cuerpo, las emociones y la identidad."
+                </p>
+</div>
+</section>
+<!-- Floating Lesson Anchors (Non-linear 'Ma' focused layout) -->
+<section class="relative max-w-6xl mx-auto px-safe-margin -mt-32 z-10 grid grid-cols-1 md:grid-cols-12 gap-y-section-gap">
+<!-- Lesson 1 (Left Offset) -->
+<div class="md:col-start-2 md:col-span-4 anchor-float" style="animation-delay: 0s;">
+<button class="group text-left focus:outline-none transition-all duration-700">
+<span class="block font-label-caps text-label-caps text-outline mb-1">01</span>
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-antonia-terracotta transition-colors">La semilla del ser</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 max-w-xs">
+                        Explorando los primeros vínculos entre tu biología y tu historia personal.
+                    </p>
+</button>
+</div>
+<!-- Space (The Ma) -->
+<div class="hidden md:block md:col-span-12 h-24"></div>
+<!-- Lesson 2 (Active Focus - Habitar el cuerpo) -->
+<div class="md:col-start-7 md:col-span-5 flex flex-col items-center md:items-start anchor-float" style="animation-delay: 1.5s;">
+<div class="relative group">
+<!-- Glow effect for active lesson -->
+<div class="absolute -inset-8 bg-antonia-terracotta/5 rounded-full blur-3xl opacity-60"></div>
+<button class="relative z-10 text-left">
+<span class="flex items-center gap-3 font-label-caps text-label-caps text-antonia-terracotta mb-1">
+<span class="material-symbols-outlined !text-[14px]" style="font-variation-settings: 'FILL' 1;">radio_button_checked</span>
+                            ESTÁS AQUÍ
+                        </span>
+<span class="block font-label-caps text-label-caps text-antonia-terracotta/60 mb-1">02</span>
+<h3 class="font-headline-md text-headline-md text-antonia-terracotta active-glow italic">Habitar el cuerpo</h3>
+<p class="font-body-lg text-body-lg text-primary mt-stack-md leading-relaxed max-w-sm">
+                            Dejar de sobrevivir para empezar a ocupar cada rincón de tu piel con consciencia y perdón.
+                        </p>
+<div class="mt-stack-md flex items-center gap-4">
+<div class="h-[1px] w-12 bg-antonia-terracotta"></div>
+<span class="font-label-caps text-label-caps text-antonia-terracotta tracking-widest uppercase">7 MIN · VOZ DE ANTÓNIA</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Lesson 3 (Right Offset) -->
+<div class="md:col-start-3 md:col-span-4 anchor-float" style="animation-delay: 3s;">
+<button class="group text-left opacity-40 hover:opacity-100 transition-opacity duration-1000">
+<span class="block font-label-caps text-label-caps text-outline mb-1">03</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">El lenguaje del síntoma</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        Cuando el cuerpo grita lo que la mente ha guardado en silencio por años.
+                    </p>
+</button>
+</div>
+<!-- Lesson 4 (Far Bottom Right) -->
+<div class="md:col-start-8 md:col-span-3 anchor-float" style="animation-delay: 0.5s;">
+<div class="group relative inline-block">
+<span class="material-symbols-outlined absolute -left-8 top-1/2 -translate-y-1/2 text-outline/30" data-icon="lock">lock</span>
+<button class="text-left opacity-30 cursor-not-allowed">
+<span class="block font-label-caps text-label-caps text-outline mb-1">04</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Reconciliación</h3>
+</button>
+</div>
+</div>
+</section>
+<!-- Secondary Section: Current Focus Card -->
+<section class="max-w-4xl mx-auto px-safe-margin mt-section-gap mb-section-gap">
+<div class="bg-sand-neutral/40 backdrop-blur-md rounded-xl p-gutter border border-white/20 shadow-sm flex flex-col md:flex-row items-center gap-gutter">
+<div class="w-full md:w-1/3 aspect-square rounded-lg overflow-hidden grayscale hover:grayscale-0 transition-all duration-1000">
+<img alt="Mindfulness" class="w-full h-full object-cover" data-alt="A minimalist and high-end artistic photograph of a woman's hands gently resting in her lap, emphasizing a state of calm and presence. The lighting is soft and warm, casting long, elegant shadows on the light linen fabric of her clothing. The overall mood is one of serenity and deep introspection, with a color palette of soft beiges, sand neutrals, and subtle terracotta accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkGDuoMKDzHA0TxHRcPpDJVbghDmygSWgReSV7-imjrZ7AQNTpCTazqEDMGD506UHf5TqkMmkNvowowvKWFlLrDYWZkM5DGrF66YJF3oldqPdXCtNG6anJnH9C1BIN36OSSIAG96auivDuHG2P5b89LfFvg4cVFu1GY89vOIKvayZ2Pq4MG3V50lRdRJLswOCzZYoApOgBL2pDYyKc7IBXE_9aFAedjU7n-TusJ6JZeDIZBrCBLFHZYUIRGa_iYie0lHgYSa558A">
+</div>
+<div class="flex-1 text-center md:text-left">
+<h4 class="font-headline-md text-headline-md text-primary mb-2">Continuar mi camino</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-stack-md">
+                        Mape te espera con una herramienta de respiración para anclar lo aprendido hoy.
+                    </p>
+<button class="px-8 py-4 bg-primary text-on-primary rounded-full font-label-caps text-label-caps tracking-widest hover:bg-antonia-terracotta transition-colors active:scale-95 duration-300">
+                        INICIAR CLASE
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (As defined in JSON) -->
+<nav class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex gap-gutter px-gutter py-stack-sm items-center backdrop-blur-xl bg-sand-neutral/20 shadow-[0_20px_50px_rgba(113,87,63,0.15)] rounded-full">
+<!-- Home (Active because we are browsing the main "Path" view) -->
+<a class="flex items-center justify-center bg-primary text-on-primary rounded-full w-12 h-12 shadow-lg shadow-primary/40 hover:scale-110 transition-transform duration-700 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="adjust">adjust</span>
+</a>
+<!-- Explore/Spa -->
+<a class="flex items-center justify-center text-on-surface-variant w-12 h-12 hover:scale-110 transition-transform duration-700 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="spa">spa</span>
+</a>
+<!-- Library/Grid -->
+<a class="flex items-center justify-center text-on-surface-variant w-12 h-12 hover:scale-110 transition-transform duration-700 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="auto_awesome_mosaic">auto_awesome_mosaic</span>
+</a>
+<!-- Profile/Checkin -->
+<a class="flex items-center justify-center text-on-surface-variant w-12 h-12 hover:scale-110 transition-transform duration-700 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="radio_button_checked">radio_button_checked</span>
+</a>
+</nav>
+<!-- Floating Action (Optional contextually, suppressed as per Detail focus, but here for UI demonstration) -->
+<!-- Suppressed on "Details" as per instructions: suppressed FAB on Settings, Profile, Details -->
+<script>
+        // Micro-interaction: Parallax Header on Scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const headerImg = document.querySelector('.mask-image-header img');
+            if (headerImg) {
+                headerImg.style.transform = `translateY(${scrolled * 0.4}px) scale(1.05)`;
+            }
+        });
+
+        // Hover Sound Effect Simulation (Visual only for this task)
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                // Future implementation: play soft chime
+            });
+        });
+
+        // Interactive Cursor (Optional extra polish)
+        document.body.addEventListener('mousemove', (e) => {
+            // Logic to move a custom soft glow cursor could be here
+        });
+    </script>
+</body></html>

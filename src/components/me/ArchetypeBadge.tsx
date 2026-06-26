@@ -1,45 +1,66 @@
 import { StyleSheet, View } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
-import { Card } from '@/components/ui/Card';
-import { Brand, Spacing, VoiceTokens, type Voice } from '@/constants/theme';
+import { Brand, Fonts, Radius, Spacing, VoiceTokens, type Voice } from '@/constants/theme';
 
 type Props = {
   archetypeName: string;
   voice: Voice;
   shortDescription?: string | null;
+  longDescription?: string | null;
 };
 
-export function ArchetypeBadge({ archetypeName, voice, shortDescription }: Props) {
+export function ArchetypeBadge({
+  archetypeName,
+  voice,
+  shortDescription,
+  longDescription,
+}: Props) {
   const accent = VoiceTokens[voice].accent;
   return (
-    <Card voice={voice} style={styles.card}>
-      <ThemedText style={styles.eyebrow}>Tu lugar de partida</ThemedText>
-      <ThemedText style={[styles.name, { color: accent }]}>
-        Hoy llegas como {archetypeName.toLowerCase()}
+    <View style={styles.card}>
+      <ThemedText type="caps" style={styles.eyebrow}>
+        Arquetipo actual
       </ThemedText>
-      {shortDescription && (
-        <ThemedText style={styles.description}>{shortDescription}</ThemedText>
+      <ThemedText style={[styles.name]}>{archetypeName}</ThemedText>
+      {(longDescription || shortDescription) && (
+        <ThemedText style={styles.description}>
+          {longDescription ?? shortDescription}
+        </ThemedText>
       )}
       <View style={styles.note}>
-        <ThemedText style={styles.noteText}>
-          Esto no te define. Es lo que la app reconoce de ti hoy.
+        <View style={[styles.dot, { backgroundColor: accent }]} />
+        <ThemedText type="caps" style={[styles.noteText, { color: accent }]}>
+          {VoiceTokens[voice].label}
         </ThemedText>
       </View>
-    </Card>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  card: { gap: Spacing.two },
-  eyebrow: {
-    fontSize: 10,
-    textTransform: 'uppercase',
-    letterSpacing: 1.5,
-    color: Brand.sageDark,
+  card: {
+    backgroundColor: 'rgba(255,255,255,0.55)',
+    borderRadius: Radius.xl,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.7)',
+    padding: Spacing.five,
+    gap: Spacing.three,
+    shadowColor: Brand.primaryBrown,
+    shadowOpacity: 0.06,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 8 },
+    elevation: 2,
   },
-  name: { fontSize: 20, lineHeight: 26, marginTop: 2 },
-  description: { color: Brand.brownDark, fontSize: 14, lineHeight: 20 },
-  note: { marginTop: Spacing.two },
-  noteText: { color: Brand.sageDark, fontSize: 12, lineHeight: 18, fontStyle: 'italic' },
+  eyebrow: { color: Brand.primaryBrown, opacity: 0.6 },
+  name: {
+    fontFamily: Fonts.serif,
+    fontSize: 26,
+    lineHeight: 32,
+    color: Brand.charcoal,
+  },
+  description: { color: Brand.textSoft, fontSize: 15, lineHeight: 24 },
+  note: { flexDirection: 'row', alignItems: 'center', gap: Spacing.two, marginTop: Spacing.two },
+  dot: { width: 6, height: 6, borderRadius: 3 },
+  noteText: { letterSpacing: 1.5 },
 });

@@ -41,7 +41,7 @@ export function DailyRitualCard() {
               <ThemedText style={styles.subtitle}>{ritual.reward.subtitle}</ThemedText>
             )}
           </View>
-          <SymbolView name="chevron.right" tintColor={Brand.sageDark} size={18} />
+          <SymbolView name="chevron.right" tintColor={Brand.textSoft} size={18} />
         </View>
       </Card>
     </Pressable>
@@ -63,9 +63,9 @@ const styles = StyleSheet.create({
     fontSize: 10,
     textTransform: 'uppercase',
     letterSpacing: 1.5,
-    color: Brand.sageDark,
+    color: Brand.textSoft,
   },
-  title: { color: Brand.brownDark, fontSize: 16, marginTop: 2 },
-  subtitle: { color: Brand.sageDark, fontSize: 13 },
-  empty: { color: Brand.sageDark, fontSize: 14, lineHeight: 20, marginTop: Spacing.two },
+  title: { color: Brand.charcoal, fontSize: 16, marginTop: 2 },
+  subtitle: { color: Brand.textSoft, fontSize: 13 },
+  empty: { color: Brand.textSoft, fontSize: 14, lineHeight: 20, marginTop: Spacing.two },
 });

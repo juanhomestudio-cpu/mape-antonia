@@ -61,12 +61,12 @@ export function WorldCard({ world, isLocked, progress }: Props) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: Brand.beigeLight,
+    backgroundColor: Brand.surfaceLow,
     borderRadius: Radius.lg,
     borderWidth: 1,
     padding: Spacing.four,
     gap: Spacing.three,
-    shadowColor: Brand.brownDark,
+    shadowColor: Brand.charcoal,
     shadowOpacity: 0.06,
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 3 },
@@ -78,12 +78,12 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     letterSpacing: 1.5,
     fontSize: 11,
-    color: Brand.sageDark,
+    color: Brand.textSoft,
   },
-  title: { color: Brand.brownDark, fontSize: 24 },
-  subtitle: { color: Brand.sageDark, fontSize: 15, lineHeight: 22 },
-  lockedText: { color: Brand.sageDark },
+  title: { color: Brand.charcoal, fontSize: 24 },
+  subtitle: { color: Brand.textSoft, fontSize: 15, lineHeight: 22 },
+  lockedText: { color: Brand.textSoft },
   footer: { gap: Spacing.two, marginTop: Spacing.one },
   progressWrap: { gap: Spacing.one },
-  progressLabel: { fontSize: 12, color: Brand.sageDark },
+  progressLabel: { fontSize: 12, color: Brand.textSoft },
 });

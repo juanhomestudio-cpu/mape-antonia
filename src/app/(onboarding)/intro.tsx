@@ -47,7 +47,7 @@ export default function IntroScreen() {
         <View style={styles.playerWrap}>
           {isLoading || !data?.intro_vimeo_id ? (
             <View style={styles.playerSkeleton}>
-              <ThemedText style={{ color: Brand.beigeLight }}>Cargando…</ThemedText>
+              <ThemedText style={{ color: Brand.surfaceLow }}>Cargando…</ThemedText>
             </View>
           ) : (
             <VimeoPlayer
@@ -74,16 +74,16 @@ const styles = StyleSheet.create({
   eyebrow: {
     textTransform: 'uppercase',
     letterSpacing: 2,
-    color: Brand.sageDark,
+    color: Brand.textSoft,
     marginBottom: Spacing.two,
     marginTop: Spacing.three,
   },
-  title: { color: Brand.brownDark, marginBottom: Spacing.three, fontSize: 28 },
-  subtitle: { color: Brand.sageDark, lineHeight: 24, marginBottom: Spacing.four },
+  title: { color: Brand.charcoal, marginBottom: Spacing.three, fontSize: 28 },
+  subtitle: { color: Brand.textSoft, lineHeight: 24, marginBottom: Spacing.four },
   playerWrap: { marginBottom: Spacing.four },
   playerSkeleton: {
     aspectRatio: 16 / 9,
-    backgroundColor: Brand.brownDark,
+    backgroundColor: Brand.charcoal,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 14,

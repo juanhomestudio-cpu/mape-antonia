@@ -1,0 +1,348 @@
+<!DOCTYPE html><html class="light" lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>Santuario - Perfil Evolutivo</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Work+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#091d2a",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed": "#1a1c1a",
+                    "on-surface-variant": "#4f453d",
+                    "antonia-terracotta": "#C17B5E",
+                    "on-primary-fixed": "#291805",
+                    "secondary-fixed-dim": "#c7c6c4",
+                    "surface-container": "#f4ece8",
+                    "primary-container": "#8b6f56",
+                    "sand-neutral": "#F5F2ED",
+                    "surface-container-highest": "#e8e1dd",
+                    "on-primary-container": "#fffbff",
+                    "surface": "#fff8f5",
+                    "inverse-on-surface": "#f7efeb",
+                    "surface-tint": "#735941",
+                    "secondary-fixed": "#e3e2e0",
+                    "surface-container-high": "#eee7e3",
+                    "tertiary-fixed-dim": "#b5c9d9",
+                    "secondary": "#5e5f5d",
+                    "on-tertiary-fixed-variant": "#374956",
+                    "tertiary-container": "#647786",
+                    "on-secondary-container": "#626361",
+                    "surface-dim": "#e0d9d5",
+                    "on-error": "#ffffff",
+                    "surface-bright": "#fff8f5",
+                    "secondary-container": "#e0e0dd",
+                    "primary-fixed": "#ffdcbf",
+                    "on-background": "#1e1b19",
+                    "on-secondary-fixed-variant": "#464745",
+                    "surface-container-low": "#faf2ee",
+                    "on-primary-fixed-variant": "#5a422c",
+                    "primary": "#71573f",
+                    "inverse-surface": "#33302d",
+                    "inverse-primary": "#e2c0a3",
+                    "primary-fixed-dim": "#e2c0a3",
+                    "surface-variant": "#e8e1dd",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary": "#4c5e6c",
+                    "on-surface": "#1e1b19",
+                    "mape-eucalyptus": "#5F7464",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#d1e5f6",
+                    "outline": "#80756c",
+                    "outline-variant": "#d2c4ba",
+                    "charcoal-text": "#333333",
+                    "on-secondary": "#ffffff",
+                    "background": "#fff8f5",
+                    "on-tertiary-container": "#fcfcff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-gap": "4rem",
+                    "safe-margin": "2rem",
+                    "stack-sm": "0.75rem",
+                    "stack-md": "1.5rem",
+                    "gutter": "1.5rem"
+            },
+            "fontFamily": {
+                    "headline-md": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"],
+                    "body-md": ["Work Sans"],
+                    "body-lg": ["Work Sans"],
+                    "label-caps": ["Work Sans"],
+                    "headline-lg-mobile": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "headline-md": ["28px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                    "headline-lg": ["42px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.7", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "1.4", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        .liquid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 20%, #fff8f5 0%, #f4ece8 50%, #e8e1dd 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-32">
+<!-- Atmospheric Background -->
+<div class="liquid-bg">
+</div>
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 backdrop-blur-md bg-surface/30 flex justify-between items-center px-safe-margin py-4 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-2xl">self_care</span>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary tracking-tighter">Santuario</h1>
+</div>
+<button class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20 hover:opacity-80 transition-opacity active:scale-95">
+<img class="w-full h-full object-cover" data-alt="A soft, ethereal portrait of a serene woman with gentle lighting and warm tones, reflecting a peaceful and grounded emotional state. The composition is artistic, minimal, and matches the 'Santuario' light-mode aesthetic with creamy whites and soft terracottas." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDPZuMDtdI5kYcFEtJnpTeKAgeHKgg4KkRFIkUH4Nw0QHWMqJp0VIDsILQGoSWfkuHL3hRxdKC-KmYTQBrzCIaj2UEEolo_UfWfgcinAX3CrwdvmLM2JjrnxFpilbXdI4i3T0P9bGj76Z5XTD_vRoo0u4RU88JHVz9fDXXegKV_Y3yx-ThDmCRvyIn3AKoLSLAq09BWBSS0baimwxS7x0KDlkolMi0UDEiM4cAmvsVWE8g6olEl6lU0gIxO0yjMThBY2ilLINTVQ">
+</button>
+</header>
+<main class="max-w-[1100px] mx-auto px-6 pt-28">
+<!-- Header Section -->
+<section class="flex flex-col items-center text-center space-y-4 fade-in-up mb-8">
+<div class="relative">
+<div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden shadow-2xl shadow-primary/10 border-4 border-surface p-1">
+<img class="w-full h-full object-cover rounded-full" data-alt="Close-up artistic portrait of a woman looking tranquil, set against a blurred background of natural light and soft linen textures. The image uses high-key lighting to emphasize clarity and peace, maintaining the brand's sophisticated and deeply human visual identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpkMfBtgP6Uuf-H2zvZNLSruaYaZP9JeBOCXS2q5IcNiSe70Vz6gF29haykTeZmxRZJ2CIShi3Pv0hWaX_wMI_e5eCf2VNIvY8klvfV6oKIGP27Qs4zWvSmxOPHJym5-4adjukgJpKkpsibci3wlDWVzVF9TIp1TFxi4AKwIe79lJVPZUGc3ow8g0XrUPs2ZM55wC9gJLQlCKU5UnaJ3I1hXbnoJ1JOq70p-WJcPVJX2pDt-UGpl-2oWeW9F4vUSWGIzAYTVuFRg">
+</div>
+<div class="absolute -bottom-2 -right-2 bg-mape-eucalyptus text-white p-2 rounded-full shadow-lg">
+<span class="material-symbols-outlined text-sm block fill-icon">potted_plant</span>
+</div>
+</div>
+<div class="space-y-1">
+<h2 class="font-headline-md text-headline-md text-on-surface">Elena Valente</h2>
+<p class="font-label-caps text-label-caps text-antonia-terracotta tracking-widest uppercase">Habitando el Presente</p>
+</div>
+</section>
+<!-- Archetype Card -->
+<section class="fade-in-up mb-4" style="animation-delay: 0.2s;">
+<div class="glass-card rounded-xl p-8 md:p-12 relative overflow-hidden" style="--mouse-x: 337px; --mouse-y: 620.8046875px;">
+<div class="relative z-10 flex flex-col md:flex-row items-center gap-8">
+<div class="flex-1 text-center md:text-left space-y-4">
+<span class="font-label-caps text-label-caps text-primary/60">Arquetipo Actual</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Mujer en Supervivencia</h3>
+<p class="text-body-md text-on-surface-variant leading-relaxed max-w-md">
+                            Te encuentras en un estado de alerta constante, pero tu consciencia está despertando. Reconocer esta fase es el primer paso hacia tu propio santuario interno.
+                        </p>
+<button class="mt-4 px-6 py-3 bg-antonia-terracotta text-white rounded-full font-body-md hover:opacity-90 transition-all active:scale-95 shadow-lg shadow-antonia-terracotta/20">
+                            Explorar mi transformación
+                        </button>
+</div>
+<div class="w-48 h-48 flex items-center justify-center relative">
+<!-- Placeholder for the abstract 3D character from user reference image 2 -->
+
+</div>
+</div>
+<!-- Subtle decorative element -->
+<div class="absolute -top-12 -right-12 w-40 h-40 bg-primary/5 rounded-full blur-3xl"></div>
+</div>
+</section>
+<!-- Stats & Transformation -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-6 fade-in-up mt-2" style="animation-delay: 0.4s;">
+<div class="bg-surface-container-low p-8 rounded-xl border border-outline-variant/20 space-y-6">
+<div class="flex justify-between items-end">
+<h4 class="font-label-caps text-label-caps text-primary/60">Racha Actual</h4>
+<span class="font-headline-md text-headline-md text-antonia-terracotta">7 días</span>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between text-xs font-medium text-on-surface-variant">
+<span class="">Habitándote</span>
+<span class="">Meta: 10 días</span>
+</div>
+<div class="h-1.5 w-full bg-sand-neutral rounded-full overflow-hidden">
+<div class="h-full bg-antonia-terracotta w-[70%] rounded-full"></div>
+</div>
+<p class="text-[12px] text-on-surface-variant/70 italic">"La constancia es la forma más pura de amor propio."</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-8 rounded-xl border border-outline-variant/20 flex flex-col justify-between space-y-6">
+<div class="space-y-1">
+<h4 class="font-label-caps text-label-caps text-primary/60">Wallet de Evolución</h4>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-md text-headline-md text-on-surface">2,450</span>
+<span class="font-label-caps text-label-caps text-primary/60">Puntos</span>
+</div>
+<p class="text-[12px] text-on-surface-variant/70 leading-relaxed">
+            Ganados por habitarte, registrar tu ánimo y avanzar en tus mundos.
+        </p>
+</div>
+<div class="space-y-4">
+<button class="w-full py-3 bg-mape-eucalyptus text-white rounded-full font-body-md hover:opacity-90 transition-all active:scale-95 shadow-lg shadow-mape-eucalyptus/20 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">redeem</span>
+            Redimir mis puntos
+        </button>
+<p class="text-[11px] text-center text-on-surface-variant/60 italic">
+            Usa tus puntos para acceder a eventos presenciales, encuentros virtuales y cursos especiales.
+        </p>
+</div>
+</div>
+</section>
+<!-- Badge Collection -->
+<section class="space-y-6 fade-in-up mt-8" style="animation-delay: 0.6s;">
+<div class="flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-on-surface">Insignias Desbloqueadas</h3>
+<button class="text-label-caps text-primary hover:underline transition-all">Ver todas</button>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+<div class="bg-sand-neutral p-6 rounded-xl flex flex-col items-center text-center space-y-3 group hover:scale-[1.02] transition-transform duration-300">
+<div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-antonia-terracotta shadow-sm">
+<span class="material-symbols-outlined fill-icon">hearing</span>
+</div>
+<span class="text-[14px] font-medium text-on-surface">Empecé a escucharme</span>
+</div>
+<div class="bg-sand-neutral p-6 rounded-xl flex flex-col items-center text-center space-y-3 group hover:scale-[1.02] transition-transform duration-300">
+<div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-mape-eucalyptus shadow-sm">
+<span class="material-symbols-outlined fill-icon">air</span>
+</div>
+<span class="text-[14px] font-medium text-on-surface">Aprendí a regularme</span>
+</div>
+<div class="bg-sand-neutral p-6 rounded-xl flex flex-col items-center text-center space-y-3 group hover:scale-[1.02] transition-transform duration-300">
+<div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-tertiary shadow-sm">
+<span class="material-symbols-outlined fill-icon">favorite</span>
+</div>
+<span class="text-[14px] font-medium text-on-surface">Habitando el cuerpo</span>
+</div>
+<div class="bg-sand-neutral p-6 rounded-xl flex flex-col items-center text-center space-y-3 opacity-40 grayscale group hover:scale-[1.02] transition-transform duration-300">
+<div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-on-surface-variant/40 shadow-sm">
+<span class="material-symbols-outlined">shield_moon</span>
+</div>
+<span class="text-[14px] font-medium text-on-surface">Paz Profunda</span>
+</div>
+</div>
+</section>
+<!-- Access to Memories / Diary -->
+<section class="fade-in-up mt-6" style="animation-delay: 0.8s;">
+<button class="w-full relative h-48 rounded-xl overflow-hidden group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="An ethereal background of flowing silk or smoke in warm beige and cream tones, creating a sense of movement and introspection. The lighting is soft and diffused, mirroring the user's emotional journal or 'Diario de Reflejos' mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgjQdqE-Y_p6Pij51eg_E6sFvR90lm8N_1SGs9BYKLTLvj39SSDB8FqSZ_TMSup_7T1HV0RtCOfJ7pDdHG4DJ1YULO7NGcG6jJuoMNh4iXeoZGnttrh0uoHCzKMU01ISFx8WWetActCsw-bPQeUvu2Nu4_w-YPLRLUAYeiVoMewLl_BLzHnkUgFqFjmt_aOyqThBTU_52uyy_krl4fZ9G9_Da1nD-iGyvycDCz8BGdgIhhoQxcOgZ7XcyPbCHtS3BWLE-tx9hv2A">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex flex-col justify-end p-8 text-left">
+<span class="text-white/80 font-label-caps text-label-caps mb-1">Tu Legado Emocional</span>
+<h3 class="text-white font-headline-md text-headline-md">Entrar al Diario de Reflejos</h3>
+<div class="mt-4 flex items-center text-white/90 text-sm">
+<span class="">24 entradas guardadas</span>
+<span class="material-symbols-outlined ml-2 text-sm">arrow_forward</span>
+</div>
+</div>
+</button>
+</section>
+<!-- Settings Section -->
+<section class="pt-8 pb-12 flex flex-col items-center fade-in-up mt-6" style="animation-delay: 1s;">
+<div class="w-full h-[1px] bg-outline-variant/30 mb-8"></div>
+<div class="flex flex-wrap justify-center gap-8">
+<button class="flex items-center gap-2 text-on-surface-variant/60 hover:text-primary transition-colors text-sm">
+<span class="material-symbols-outlined text-lg">settings</span>
+                    Configuración
+                </button>
+<button class="flex items-center gap-2 text-on-surface-variant/60 hover:text-primary transition-colors text-sm">
+<span class="material-symbols-outlined text-lg">lock</span>
+                    Privacidad
+                </button>
+<button class="flex items-center gap-2 text-on-surface-variant/60 hover:text-primary transition-colors text-sm">
+<span class="material-symbols-outlined text-lg">help</span>
+                    Soporte
+                </button>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-8 pb-8 pt-4 bg-surface/80 dark:bg-inverse-surface/80 backdrop-blur-xl border-t border-outline-variant/20 shadow-[0_-10px_40px_rgba(115,89,65,0.1)] z-50 rounded-t-xl">
+<a class="flex items-center justify-center text-on-surface-variant/60 p-3 hover:text-primary transition-colors active:scale-90 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined">auto_awesome</span>
+</a>
+<a class="flex items-center justify-center text-on-surface-variant/60 p-3 hover:text-primary transition-colors active:scale-90 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined">explore</span>
+</a>
+<a class="flex items-center justify-center text-on-surface-variant/60 p-3 hover:text-primary transition-colors active:scale-90 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined">spa</span>
+</a>
+<a class="flex items-center justify-center bg-primary-container/20 text-primary rounded-full p-3 active:scale-90 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined fill-icon">person_search</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions and atmospheric logic
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // Soft scroll reveal
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+
+
+
+
+</body></html>

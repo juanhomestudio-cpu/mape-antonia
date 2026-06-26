@@ -18,11 +18,11 @@ export function Card({ voice, style, children, ...rest }: Props) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: Brand.beigeLight,
+    backgroundColor: Brand.surfaceLow,
     borderRadius: Radius.lg,
     borderWidth: 1,
     padding: Spacing.four,
-    shadowColor: Brand.brownDark,
+    shadowColor: Brand.charcoal,
     shadowOpacity: 0.05,
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 2 },

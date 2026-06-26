@@ -119,12 +119,12 @@ const styles = StyleSheet.create({
   eyebrow: {
     textTransform: 'uppercase',
     letterSpacing: 2,
-    color: Brand.sageDark,
+    color: Brand.textSoft,
     marginBottom: Spacing.two,
   },
-  title: { color: Brand.brownDark, marginBottom: Spacing.three },
-  subtitle: { color: Brand.sageDark, lineHeight: 24 },
+  title: { color: Brand.charcoal, marginBottom: Spacing.three },
+  subtitle: { color: Brand.textSoft, lineHeight: 24 },
   form: { gap: Spacing.one },
   footer: { marginTop: Spacing.six, alignItems: 'center', gap: Spacing.two },
-  footerText: { color: Brand.sageDark },
+  footerText: { color: Brand.textSoft },
 });

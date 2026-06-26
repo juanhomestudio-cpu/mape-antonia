@@ -1,10 +1,20 @@
-import { Platform, StyleSheet, Text, type TextProps } from 'react-native';
+import { StyleSheet, Text, type TextProps } from 'react-native';
 
-import { Fonts, ThemeColor } from '@/constants/theme';
+import { Fonts, Type, type ThemeColor } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 
 export type ThemedTextProps = TextProps & {
-  type?: 'default' | 'title' | 'small' | 'smallBold' | 'subtitle' | 'link' | 'linkPrimary' | 'code';
+  type?:
+    | 'default'        // body Work Sans 16/26
+    | 'bodyLg'         // body 18/31
+    | 'title'          // headline serif 32 (mobile)
+    | 'titleLg'        // headline serif 42
+    | 'titleMd'        // headline serif 28
+    | 'caps'           // label tag uppercase 12
+    | 'small'          // 14/20 sans
+    | 'smallBold'      // 14/20 sans semibold
+    | 'subtitle'       // 24 serif
+    | 'link';
   themeColor?: ThemeColor;
 };
 
@@ -16,13 +26,15 @@ export function ThemedText({ style, type = 'default', themeColor, ...rest }: The
       style={[
         { color: theme[themeColor ?? 'text'] },
         type === 'default' && styles.default,
+        type === 'bodyLg' && styles.bodyLg,
         type === 'title' && styles.title,
+        type === 'titleLg' && styles.titleLg,
+        type === 'titleMd' && styles.titleMd,
+        type === 'subtitle' && styles.subtitle,
+        type === 'caps' && styles.caps,
         type === 'small' && styles.small,
         type === 'smallBold' && styles.smallBold,
-        type === 'subtitle' && styles.subtitle,
         type === 'link' && styles.link,
-        type === 'linkPrimary' && styles.linkPrimary,
-        type === 'code' && styles.code,
         style,
       ]}
       {...rest}
@@ -31,43 +43,14 @@ export function ThemedText({ style, type = 'default', themeColor, ...rest }: The
 }
 
 const styles = StyleSheet.create({
-  small: {
-    fontSize: 14,
-    lineHeight: 20,
-    fontWeight: 500,
-  },
-  smallBold: {
-    fontSize: 14,
-    lineHeight: 20,
-    fontWeight: 700,
-  },
-  default: {
-    fontSize: 16,
-    lineHeight: 24,
-    fontWeight: 500,
-  },
-  title: {
-    fontSize: 48,
-    fontWeight: 600,
-    lineHeight: 52,
-  },
-  subtitle: {
-    fontSize: 32,
-    lineHeight: 44,
-    fontWeight: 600,
-  },
-  link: {
-    lineHeight: 30,
-    fontSize: 14,
-  },
-  linkPrimary: {
-    lineHeight: 30,
-    fontSize: 14,
-    color: '#3c87f7',
-  },
-  code: {
-    fontFamily: Fonts.mono,
-    fontWeight: Platform.select({ android: 700 }) ?? 500,
-    fontSize: 12,
-  },
+  default: Type.bodyMd,
+  bodyLg: Type.bodyLg,
+  title: Type.headlineLgM,
+  titleLg: Type.headlineLg,
+  titleMd: Type.headlineMd,
+  subtitle: { fontFamily: Fonts.serif, fontSize: 24, lineHeight: 32 },
+  caps: Type.labelCaps,
+  small: { fontFamily: Fonts.sans, fontSize: 14, lineHeight: 20 },
+  smallBold: { fontFamily: Fonts.sansSemiBold, fontSize: 14, lineHeight: 20 },
+  link: { fontFamily: Fonts.sansMedium, fontSize: 14, lineHeight: 20 },
 });

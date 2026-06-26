@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
     fontSize: 10,
     textTransform: 'uppercase',
     letterSpacing: 1.5,
-    color: Brand.sageDark,
+    color: Brand.textSoft,
   },
-  title: { color: Brand.brownDark, fontSize: 16, marginTop: 2 },
-  subtitle: { color: Brand.sageDark, fontSize: 13, lineHeight: 18 },
+  title: { color: Brand.charcoal, fontSize: 16, marginTop: 2 },
+  subtitle: { color: Brand.textSoft, fontSize: 13, lineHeight: 18 },
 });

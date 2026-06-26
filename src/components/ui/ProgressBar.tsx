@@ -29,6 +29,6 @@ export function ProgressBar({ value, color = Brand.terracotta, height = 6 }: Pro
 }
 
 const styles = StyleSheet.create({
-  track: { backgroundColor: Brand.beigeWarm, overflow: 'hidden', borderRadius: Radius.pill },
+  track: { backgroundColor: Brand.surfaceMid, overflow: 'hidden', borderRadius: Radius.pill },
   fill: { },
 });

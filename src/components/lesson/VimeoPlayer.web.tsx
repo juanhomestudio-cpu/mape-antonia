@@ -86,15 +86,19 @@ export function VimeoPlayer({
 
   return (
     <View style={styles.container}>
-      {/* @ts-expect-error: iframe es un elemento DOM, no nativo de RN, pero se renderiza en web. */}
-      <iframe
-        ref={iframeRef}
-        src={src}
-        style={styles.iframe as any}
-        frameBorder={0}
-        allow="autoplay; fullscreen; picture-in-picture"
-        allowFullScreen
-      />
+      {/* iframe es un elemento DOM, no nativo de RN, pero se renderiza en web. */}
+      {(() => {
+        const IFrameAny = 'iframe' as any;
+        return (
+          <IFrameAny
+            ref={iframeRef}
+            src={src}
+            style={{ width: '100%', height: '100%', border: 0, display: 'block' }}
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+          />
+        );
+      })()}
     </View>
   );
 }
@@ -102,9 +106,8 @@ export function VimeoPlayer({
 const styles = StyleSheet.create({
   container: {
     aspectRatio: 16 / 9,
-    backgroundColor: Brand.brownDark,
+    backgroundColor: Brand.charcoal,
     borderRadius: Radius.md,
     overflow: 'hidden',
   },
-  iframe: { width: '100%', height: '100%', border: 0 },
 });

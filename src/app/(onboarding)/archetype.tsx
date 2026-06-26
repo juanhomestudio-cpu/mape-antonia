@@ -20,7 +20,7 @@ export default function ArchetypeScreen() {
   if (isLoading || !archetype) {
     return (
       <SafeAreaView style={styles.container} edges={['top']}>
-        <ThemedText style={{ color: Brand.sageDark }}>Cargando…</ThemedText>
+        <ThemedText style={{ color: Brand.textSoft }}>Cargando…</ThemedText>
       </SafeAreaView>
     );
   }
@@ -59,12 +59,12 @@ const styles = StyleSheet.create({
   eyebrow: {
     textTransform: 'uppercase',
     letterSpacing: 2,
-    color: Brand.sageDark,
+    color: Brand.textSoft,
     marginBottom: Spacing.three,
   },
   title: { marginBottom: Spacing.four, fontSize: 28, lineHeight: 36 },
   card: { marginBottom: Spacing.four, gap: Spacing.three },
-  body1: { color: Brand.brownDark, fontSize: 16, lineHeight: 24 },
-  body2: { color: Brand.sageDark, fontSize: 15, lineHeight: 22 },
-  note: { color: Brand.sageDark, fontSize: 14, lineHeight: 20, fontStyle: 'italic' },
+  body1: { color: Brand.charcoal, fontSize: 16, lineHeight: 24 },
+  body2: { color: Brand.textSoft, fontSize: 15, lineHeight: 22 },
+  note: { color: Brand.textSoft, fontSize: 14, lineHeight: 20, fontStyle: 'italic' },
 });

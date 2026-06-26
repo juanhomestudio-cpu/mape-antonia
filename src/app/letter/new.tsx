@@ -62,7 +62,7 @@ export default function NewLetterScreen() {
       <Stack.Screen options={{ headerShown: false }} />
       <KeyboardScrollView contentContainerStyle={styles.scroll}>
         <Pressable onPress={() => router.back()} style={styles.back} hitSlop={12}>
-          <SymbolView name="chevron.left" tintColor={Brand.brownDark} size={22} />
+          <SymbolView name="chevron.left" tintColor={Brand.charcoal} size={22} />
           <ThemedText style={styles.backText}>Volver</ThemedText>
         </Pressable>
 
@@ -142,14 +142,14 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: Brand.bone },
   scroll: { padding: Spacing.four, paddingBottom: Spacing.six },
   back: { flexDirection: 'row', alignItems: 'center', gap: Spacing.one, marginBottom: Spacing.three },
-  backText: { color: Brand.brownDark, fontSize: 15 },
+  backText: { color: Brand.charcoal, fontSize: 15 },
   eyebrow: {
     textTransform: 'uppercase',
     letterSpacing: 2,
-    color: Brand.sageDark,
+    color: Brand.textSoft,
     marginBottom: Spacing.two,
   },
-  title: { color: Brand.brownDark, fontSize: 26, lineHeight: 32, marginBottom: Spacing.four },
+  title: { color: Brand.charcoal, fontSize: 26, lineHeight: 32, marginBottom: Spacing.four },
   dateCard: { gap: Spacing.three, marginTop: Spacing.two },
   switchRow: {
     flexDirection: 'row',
@@ -159,6 +159,6 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: Brand.sand,
   },
-  switchLabel: { color: Brand.brownDark, fontSize: 14 },
-  switchHelper: { color: Brand.sageDark, fontSize: 12, marginTop: 2 },
+  switchLabel: { color: Brand.charcoal, fontSize: 14 },
+  switchHelper: { color: Brand.textSoft, fontSize: 12, marginTop: 2 },
 });

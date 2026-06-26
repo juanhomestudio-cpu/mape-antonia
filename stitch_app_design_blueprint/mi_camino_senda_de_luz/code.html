@@ -1,0 +1,273 @@
+<!DOCTYPE html><html class="light" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>Santuario - Mi Camino</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Work+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#d2c4ba",
+                        "sand-neutral": "#F5F2ED",
+                        "on-primary-container": "#fffbff",
+                        "on-secondary-fixed": "#1a1c1a",
+                        "on-tertiary-fixed-variant": "#374956",
+                        "tertiary-container": "#647786",
+                        "secondary-fixed": "#e3e2e0",
+                        "surface-tint": "#735941",
+                        "surface-bright": "#fff8f5",
+                        "primary-container": "#8b6f56",
+                        "charcoal-text": "#333333",
+                        "surface-container-low": "#faf2ee",
+                        "secondary": "#5e5f5d",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#f4ece8",
+                        "primary-fixed": "#ffdcbf",
+                        "secondary-container": "#e0e0dd",
+                        "on-secondary-container": "#626361",
+                        "secondary-fixed-dim": "#c7c6c4",
+                        "inverse-on-surface": "#f7efeb",
+                        "on-secondary-fixed-variant": "#464745",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#4c5e6c",
+                        "antonia-terracotta": "#C17B5E",
+                        "primary": "#71573f",
+                        "on-surface": "#1e1b19",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#b5c9d9",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#d1e5f6",
+                        "on-surface-variant": "#4f453d",
+                        "surface": "#fff8f5",
+                        "inverse-primary": "#e2c0a3",
+                        "on-tertiary-container": "#fcfcff",
+                        "primary-fixed-dim": "#e2c0a3",
+                        "on-background": "#1e1b19",
+                        "surface-container-highest": "#e8e1dd",
+                        "background": "#fff8f5",
+                        "outline": "#80756c",
+                        "mape-eucalyptus": "#5F7464",
+                        "surface-dim": "#e0d9d5",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#eee7e3",
+                        "on-tertiary-fixed": "#091d2a",
+                        "inverse-surface": "#33302d",
+                        "on-primary-fixed-variant": "#5a422c",
+                        "on-primary-fixed": "#291805",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e8e1dd",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "4rem",
+                        "safe-margin": "2rem",
+                        "stack-md": "1.5rem",
+                        "gutter": "1.5rem",
+                        "stack-sm": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Work Sans"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "body-md": ["Work Sans"],
+                        "headline-lg": ["Playfair Display"],
+                        "body-lg": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "1.4", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "headline-md": ["28px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-lg": ["42px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.7", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        @keyframes flow-glow {
+            0%, 100% { opacity: 0.4; transform: scale(1); filter: blur(10px); }
+            50% { opacity: 0.8; transform: scale(1.2); filter: blur(15px); }
+        }
+        .active-node-glow {
+            animation: flow-glow 4s ease-in-out infinite;
+        }
+        .path-line {
+            background: linear-gradient(to bottom, transparent, rgba(113, 87, 63, 0.2) 20%, rgba(113, 87, 63, 0.4) 50%, rgba(113, 87, 63, 0.2) 80%, transparent);
+        }
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal-on-scroll.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #fff8f5;
+            scroll-behavior: smooth;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body-md text-on-surface overflow-x-hidden selection:bg-primary/20">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 backdrop-blur-md bg-background/30 flex justify-between items-center px-safe-margin py-stack-md">
+<button class="material-symbols-outlined text-primary hover:opacity-70 transition-opacity active:scale-95 duration-500 ease-out" data-icon="menu">menu</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile tracking-[0.2em] text-primary uppercase">SANTUARIO</h1>
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden border border-outline-variant active:scale-95 transition-transform">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional, soft-lit portrait of a serene woman in her late 30s, looking directly at the camera with a gentle expression. The background is a warm, out-of-focus interior with natural wood and linen textures. The lighting is golden-hour sunlight, creating an atmosphere of calm and sophisticated intimacy, aligned with a high-end wellness brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_67laoWkc5CZrE5N6lCtZDVS-GgINFZuVuaLQvve6qCeIOaNax-pUtSgkk4a3elK9D-p7D7vhS_Gbm7eyQFWHwlDhCRtxJe4H7FGUqQtQ7DwGi_FUAiKMqobv5zTEFwaqMvdiSV76bSznELXx8zzxEI4N7_1M9Hg5lFBAAwUQqJhoQgxM07JnZh3hvKIcqF2Q4bTT10d3G6HmBESG0NVwXDC7ZK4KCQqRnaQutDX7IfIwqtxb0TjMl4S7Bd3RJORn1yw29imTBg">
+</div>
+</header>
+<!-- Liquid Background -->
+<div class="fixed inset-0 -z-10 pointer-events-none">
+
+<div class="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background"></div>
+</div>
+<!-- Evolutionary Map Content -->
+<main class="relative pt-32 pb-48 px-safe-margin flex flex-col items-center min-h-screen">
+<!-- The Path Line -->
+<div class="absolute left-1/2 top-32 bottom-0 w-[1px] path-line -translate-x-1/2"></div>
+<!-- Progress Indicator (Floating Label) -->
+<div class="fixed top-24 left-1/2 -translate-x-1/2 z-40 bg-sand-neutral/80 backdrop-blur-lg px-4 py-1 rounded-full border border-outline-variant/30 reveal-on-scroll active">
+<span class="font-label-caps text-label-caps text-primary tracking-widest uppercase">Mi Camino · Fase 1</span>
+</div>
+<!-- Node: Start -->
+<div class="relative z-10 mt-12 flex flex-col items-center reveal-on-scroll active">
+<div class="w-2 h-2 rounded-full bg-primary mb-4"></div>
+<p class="font-label-caps text-label-caps text-on-surface-variant tracking-[0.3em] uppercase">El Comienzo</p>
+</div>
+<!-- World 1: Un umbral de silencio (ACTIVE) -->
+<section class="relative w-full max-w-lg mt-section-gap mb-section-gap flex flex-col items-center reveal-on-scroll active">
+<!-- Glowing Anchor -->
+<div class="relative w-12 h-12 flex items-center justify-center mb-8">
+<div class="absolute inset-0 bg-antonia-terracotta/40 rounded-full blur-xl active-node-glow"></div>
+<div class="relative z-10 w-4 h-4 bg-antonia-terracotta rounded-full shadow-[0_0_15px_rgba(193,123,94,0.6)]"></div>
+</div>
+<div class="text-center">
+<span class="font-label-caps text-label-caps text-antonia-terracotta mb-2 block tracking-widest uppercase">Mundo 1</span>
+<h2 class="font-headline-md text-headline-md text-primary mb-6">Un umbral de silencio</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-sm mx-auto italic leading-relaxed">
+                    "El inicio de la relación con el cuerpo, las emociones y la identidad."
+                </p>
+</div>
+<!-- Path Controls -->
+<div class="mt-stack-md">
+<button class="group flex flex-col items-center gap-4 transition-all duration-700 hover:scale-105">
+<div class="px-8 py-3 bg-primary text-on-primary rounded-full font-label-caps text-label-caps tracking-widest shadow-xl shadow-primary/20 active:scale-95 transition-all">
+                        CONTINUAR MI CAMINO
+                    </div>
+<span class="text-on-surface-variant text-xs opacity-60 font-body-md tracking-wider">Clase 1: El despertar</span>
+</button>
+</div>
+</section>
+<!-- World 2: Entenderme (Locked/Distant) -->
+<section class="relative w-full max-w-lg mt-section-gap mb-section-gap flex flex-col items-center reveal-on-scroll">
+<div class="w-3 h-3 border border-primary/40 rounded-full mb-8"></div>
+<div class="text-center opacity-60">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-2 block tracking-widest uppercase">Mundo 2</span>
+<h2 class="font-headline-md text-headline-md text-primary mb-6">Entenderme</h2>
+<div class="flex items-center justify-center gap-2 text-on-surface-variant/40">
+<span class="material-symbols-outlined text-sm" data-icon="lock">lock</span>
+<span class="font-label-caps text-label-caps tracking-widest">BLOQUEADO</span>
+</div>
+</div>
+</section>
+<!-- Dynamic Element: Subtle Visual Anchor -->
+<div class="relative w-full h-[300px] reveal-on-scroll">
+<div class="absolute left-1/4 top-1/2 -translate-y-1/2 w-48 h-48 border border-outline-variant/20 rounded-full"></div>
+<div class="absolute right-1/4 top-1/3 w-24 h-24 bg-sand-neutral/30 rounded-full backdrop-blur-sm flex items-center justify-center border border-white/40">
+<span class="material-symbols-outlined text-primary/40" data-icon="auto_awesome">auto_awesome</span>
+</div>
+</div>
+<!-- World 3: Habitarme -->
+<section class="relative w-full max-w-lg mt-section-gap mb-section-gap flex flex-col items-center reveal-on-scroll">
+<div class="w-3 h-3 border border-primary/40 rounded-full mb-8"></div>
+<div class="text-center opacity-40">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-2 block tracking-widest uppercase">Mundo 3</span>
+<h2 class="font-headline-md text-headline-md text-primary">Habitarme</h2>
+</div>
+</section>
+<!-- Asymmetric Detail Card (Secondary Path) -->
+<div class="w-full max-w-4xl mt-32 grid grid-cols-1 md:grid-cols-2 gap-gutter reveal-on-scroll">
+<div class="bg-white/40 backdrop-blur-xl p-8 rounded-3xl border border-white/60 shadow-sm flex flex-col justify-between h-64">
+<div>
+<span class="material-symbols-outlined text-antonia-terracotta mb-4" data-icon="history_edu">history_edu</span>
+<h3 class="font-headline-md text-primary text-xl mb-2">Carta a mi futura yo</h3>
+<p class="text-on-surface-variant text-sm font-body-md leading-relaxed">¿Qué necesita escuchar la mujer que serás en unos meses?</p>
+</div>
+<button class="font-label-caps text-label-caps text-antonia-terracotta text-left hover:opacity-70 transition-opacity">ESCRIBIR MEMORIA →</button>
+</div>
+<div class="bg-sand-neutral/40 backdrop-blur-xl p-8 rounded-3xl border border-primary/5 shadow-sm flex flex-col justify-between h-64 md:translate-y-12">
+<div>
+<span class="material-symbols-outlined text-mape-eucalyptus mb-4" data-icon="spa">spa</span>
+<h3 class="font-headline-md text-primary text-xl mb-2">Rituales de Regulación</h3>
+<p class="text-on-surface-variant text-sm font-body-md leading-relaxed">Breathwork y micro-hábitos para regresar a la calma.</p>
+</div>
+<button class="font-label-caps text-label-caps text-mape-eucalyptus text-left hover:opacity-70 transition-opacity">VER BIBLIOTECA →</button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex gap-gutter px-gutter py-stack-sm items-center backdrop-blur-xl bg-sand-neutral/20 shadow-[0_20px_50px_rgba(113,87,63,0.15)] rounded-full border border-white/30">
+<a class="flex items-center justify-center bg-primary text-on-primary rounded-full w-12 h-12 shadow-lg shadow-primary/40 hover:scale-110 transition-transform duration-700" href="#">
+<span class="material-symbols-outlined" data-icon="adjust">adjust</span>
+</a>
+<a class="flex items-center justify-center text-on-surface-variant w-12 h-12 hover:scale-110 transition-transform duration-700" href="#">
+<span class="material-symbols-outlined" data-icon="spa">spa</span>
+</a>
+<a class="flex items-center justify-center text-on-surface-variant w-12 h-12 hover:scale-110 transition-transform duration-700" href="#">
+<span class="material-symbols-outlined" data-icon="auto_awesome_mosaic">auto_awesome_mosaic</span>
+</a>
+<a class="flex items-center justify-center text-on-surface-variant w-12 h-12 hover:scale-110 transition-transform duration-700" href="#">
+<span class="material-symbols-outlined" data-icon="radio_button_checked">radio_button_checked</span>
+</a>
+</nav>
+<script>
+        // Reveal on scroll logic
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -100px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+        // Subtle micro-parallax on scroll for liquid background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const bg = document.querySelector('webgl-shader');
+            if (bg) {
+                bg.style.transform = `translateY(${scrolled * 0.1}px)`;
+            }
+        });
+    </script>
+</body></html>

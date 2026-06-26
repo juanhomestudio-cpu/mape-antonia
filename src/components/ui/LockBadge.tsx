@@ -13,7 +13,7 @@ export function LockBadge({ size = 22 }: { size?: number }) {
 
 const styles = StyleSheet.create({
   wrap: {
-    backgroundColor: Brand.beigeWarm,
+    backgroundColor: Brand.surfaceMid,
     borderRadius: Radius.pill,
     alignItems: 'center',
     justifyContent: 'center',

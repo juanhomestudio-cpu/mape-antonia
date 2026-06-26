@@ -25,12 +25,12 @@ export default function LetterReadScreen() {
       <Stack.Screen options={{ headerShown: false }} />
       <ScrollView contentContainerStyle={styles.scroll}>
         <Pressable onPress={() => router.back()} style={styles.back} hitSlop={12}>
-          <SymbolView name="chevron.left" tintColor={Brand.brownDark} size={22} />
+          <SymbolView name="chevron.left" tintColor={Brand.charcoal} size={22} />
           <ThemedText style={styles.backText}>Volver</ThemedText>
         </Pressable>
 
         {isLoading || !letter ? (
-          <ThemedText style={{ color: Brand.sageDark }}>Cargando…</ThemedText>
+          <ThemedText style={{ color: Brand.textSoft }}>Cargando…</ThemedText>
         ) : (
           <>
             <ThemedText style={styles.eyebrow}>Carta a tu futura yo</ThemedText>
@@ -69,18 +69,18 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: Brand.bone },
   scroll: { padding: Spacing.four, paddingBottom: Spacing.six },
   back: { flexDirection: 'row', alignItems: 'center', gap: Spacing.one, marginBottom: Spacing.three },
-  backText: { color: Brand.brownDark, fontSize: 15 },
+  backText: { color: Brand.charcoal, fontSize: 15 },
   eyebrow: {
     textTransform: 'uppercase',
     letterSpacing: 2,
-    color: Brand.sageDark,
+    color: Brand.textSoft,
     marginBottom: Spacing.two,
   },
-  title: { color: Brand.brownDark, marginBottom: Spacing.four, fontSize: 24, lineHeight: 30 },
+  title: { color: Brand.charcoal, marginBottom: Spacing.four, fontSize: 24, lineHeight: 30 },
   bodyCard: { marginBottom: Spacing.four },
-  body: { color: Brand.brownDark, fontSize: 17, lineHeight: 26 },
+  body: { color: Brand.charcoal, fontSize: 17, lineHeight: 26 },
   meta: { gap: Spacing.two, paddingTop: Spacing.three, borderTopWidth: 1, borderTopColor: Brand.sand },
   metaRow: { flexDirection: 'row', justifyContent: 'space-between' },
-  metaLabel: { color: Brand.sageDark, fontSize: 12, textTransform: 'uppercase', letterSpacing: 1 },
-  metaValue: { color: Brand.brownDark, fontSize: 14 },
+  metaLabel: { color: Brand.textSoft, fontSize: 12, textTransform: 'uppercase', letterSpacing: 1 },
+  metaValue: { color: Brand.charcoal, fontSize: 14 },
 });

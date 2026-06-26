@@ -27,11 +27,11 @@ export function DateField({ label, value, onChange, minDate }: DateFieldProps) {
     onChange(new Date(y!, (m ?? 1) - 1, d ?? 1, 9, 0, 0));
   };
 
+  const InputAny = 'input' as any;
   return (
     <View style={styles.wrap}>
       <ThemedText style={styles.label}>{label}</ThemedText>
-      {/* @ts-expect-error: input HTML solo válido en web */}
-      <input
+      <InputAny
         type="date"
         value={toInputValue(value)}
         min={minDate ? toInputValue(minDate) : undefined}
@@ -48,15 +48,15 @@ const styles = StyleSheet.create({
     fontSize: 11,
     textTransform: 'uppercase',
     letterSpacing: 1.5,
-    color: Brand.sageDark,
+    color: Brand.textSoft,
   },
   input: {
     minHeight: 44,
     paddingLeft: Spacing.three,
     paddingRight: Spacing.three,
     fontSize: 16,
-    color: Brand.brownDark,
-    backgroundColor: Brand.beigeLight,
+    color: Brand.charcoal,
+    backgroundColor: Brand.surfaceLow,
     borderRadius: Radius.md,
     borderWidth: 1,
     borderColor: Brand.sand,

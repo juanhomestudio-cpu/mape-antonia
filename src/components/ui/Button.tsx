@@ -56,10 +56,10 @@ const variantStyles = {
   },
   secondary: {
     container: { backgroundColor: 'transparent', borderWidth: 1, borderColor: Brand.sand },
-    label: { color: Brand.brownDark },
+    label: { color: Brand.charcoal },
   },
   ghost: {
     container: { backgroundColor: 'transparent' },
-    label: { color: Brand.sageDark },
+    label: { color: Brand.textSoft },
   },
 } as const;

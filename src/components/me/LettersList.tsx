@@ -15,10 +15,10 @@ function LetterRow({ letter, interactive }: { letter: FutureLetter; interactive:
   const isPast = !!letter.delivered_at;
   const inner = (
     <View style={styles.row}>
-      <View style={[styles.iconWrap, { backgroundColor: isPast ? Brand.terracotta : Brand.beigeWarm }]}>
+      <View style={[styles.iconWrap, { backgroundColor: isPast ? Brand.terracotta : Brand.surfaceMid }]}>
         <SymbolView
           name={isPast ? 'envelope.open.fill' : 'envelope'}
-          tintColor={isPast ? Brand.white : Brand.sageDark}
+          tintColor={isPast ? Brand.white : Brand.textSoft}
           size={18}
         />
       </View>
@@ -31,7 +31,7 @@ function LetterRow({ letter, interactive }: { letter: FutureLetter; interactive:
         </ThemedText>
       </View>
       {interactive && (
-        <SymbolView name="chevron.right" tintColor={Brand.sageDark} size={16} />
+        <SymbolView name="chevron.right" tintColor={Brand.textSoft} size={16} />
       )}
     </View>
   );
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     letterSpacing: 1.5,
     fontSize: 11,
-    color: Brand.sageDark,
+    color: Brand.textSoft,
   },
   newBtn: { flexDirection: 'row', alignItems: 'center', gap: 4 },
   newBtnText: { color: Brand.terracotta, fontSize: 13, fontWeight: '500' },
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: Spacing.three,
-    backgroundColor: Brand.beigeLight,
+    backgroundColor: Brand.surfaceLow,
     borderRadius: Radius.md,
     borderWidth: 1,
     borderColor: Brand.sand,
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   center: { flex: 1, gap: 2 },
-  title: { color: Brand.brownDark, fontSize: 15 },
-  meta: { color: Brand.sageDark, fontSize: 12 },
-  empty: { color: Brand.sageDark, fontSize: 13, lineHeight: 20 },
+  title: { color: Brand.charcoal, fontSize: 15 },
+  meta: { color: Brand.textSoft, fontSize: 12 },
+  empty: { color: Brand.textSoft, fontSize: 13, lineHeight: 20 },
 });

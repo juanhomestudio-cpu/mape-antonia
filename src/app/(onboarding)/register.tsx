@@ -174,9 +174,9 @@ const styles = StyleSheet.create({
   eyebrow: {
     textTransform: 'uppercase',
     letterSpacing: 2,
-    color: Brand.sageDark,
+    color: Brand.textSoft,
     marginBottom: Spacing.two,
   },
-  title: { color: Brand.brownDark, marginBottom: Spacing.three, fontSize: 28 },
-  subtitle: { color: Brand.sageDark, lineHeight: 24 },
+  title: { color: Brand.charcoal, marginBottom: Spacing.three, fontSize: 28 },
+  subtitle: { color: Brand.textSoft, lineHeight: 24 },
 });

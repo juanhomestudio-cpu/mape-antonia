@@ -55,7 +55,7 @@ export default function SettingsScreen() {
       <Stack.Screen options={{ headerShown: false }} />
       <ScrollView contentContainerStyle={styles.scroll}>
         <Pressable onPress={() => router.back()} style={styles.back} hitSlop={12}>
-          <SymbolView name="chevron.left" tintColor={Brand.brownDark} size={22} />
+          <SymbolView name="chevron.left" tintColor={Brand.charcoal} size={22} />
           <ThemedText style={styles.backText}>Volver</ThemedText>
         </Pressable>
 
@@ -73,7 +73,7 @@ export default function SettingsScreen() {
         <View style={styles.section}>
           <Pressable onPress={showPrivacy} style={styles.row}>
             <View style={styles.rowLeft}>
-              <SymbolView name="lock.shield" tintColor={Brand.sageDark} size={20} />
+              <SymbolView name="lock.shield" tintColor={Brand.textSoft} size={20} />
               <ThemedText style={styles.rowLabel}>Política de privacidad</ThemedText>
             </View>
             <SymbolView name="chevron.right" tintColor={Brand.sand} size={16} />
@@ -93,28 +93,28 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: Brand.bone },
   scroll: { padding: Spacing.four, paddingBottom: Spacing.six },
   back: { flexDirection: 'row', alignItems: 'center', gap: Spacing.one, marginBottom: Spacing.three },
-  backText: { color: Brand.brownDark, fontSize: 15 },
-  title: { color: Brand.brownDark, marginBottom: Spacing.four, fontSize: 28 },
+  backText: { color: Brand.charcoal, fontSize: 15 },
+  title: { color: Brand.charcoal, marginBottom: Spacing.four, fontSize: 28 },
   accountCard: { marginBottom: Spacing.four, gap: Spacing.two },
   eyebrow: {
     fontSize: 10,
     textTransform: 'uppercase',
     letterSpacing: 1.5,
-    color: Brand.sageDark,
+    color: Brand.textSoft,
   },
-  value: { color: Brand.brownDark, fontSize: 15 },
+  value: { color: Brand.charcoal, fontSize: 15 },
   section: { gap: Spacing.two, marginBottom: Spacing.four },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: Spacing.three,
-    backgroundColor: Brand.beigeLight,
+    backgroundColor: Brand.surfaceLow,
     borderRadius: 14,
     borderWidth: 1,
     borderColor: Brand.sand,
   },
   rowLeft: { flexDirection: 'row', alignItems: 'center', gap: Spacing.two },
-  rowLabel: { color: Brand.brownDark, fontSize: 15 },
+  rowLabel: { color: Brand.charcoal, fontSize: 15 },
   footerActions: { gap: Spacing.two, marginTop: Spacing.four },
 });
