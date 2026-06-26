@@ -121,18 +121,16 @@ export default function LessonScreen() {
       <SafeAreaView style={{ flex: 1 }} edges={['top', 'bottom']}>
         <Stack.Screen options={{ headerShown: false }} />
 
-        {/* Header — "Volver" a la izquierda con chevron + texto, SANTUARIO centrado absoluto */}
+        {/* Header — chevron solo a la izquierda, SANTUARIO centrado, spacer a la derecha */}
         <View style={styles.header}>
           <Pressable
             onPress={goBackToWorld}
-            hitSlop={12}
+            hitSlop={16}
             style={({ pressed }) => [styles.backBtn, pressed && { opacity: 0.6 }]}>
-            <SymbolView name="chevron.left" tintColor={Brand.charcoal} size={20} />
-            <ThemedText style={styles.backLabel}>Volver</ThemedText>
+            <SymbolView name="chevron.left" tintColor={Brand.charcoal} size={24} />
           </Pressable>
-          <ThemedText style={[styles.brandTitle, styles.brandTitleCentered]}>
-            SANTUARIO
-          </ThemedText>
+          <ThemedText style={styles.brandTitle}>SANTUARIO</ThemedText>
+          <View style={styles.headerSpacer} />
         </View>
 
         <View style={styles.animatedShell}>
@@ -272,36 +270,24 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
     paddingHorizontal: Spacing.four,
     paddingTop: Spacing.three,
     paddingBottom: Spacing.three,
     minHeight: 44,
   },
   backBtn: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 2,
-    paddingVertical: Spacing.one,
-    paddingRight: Spacing.three,
-    zIndex: 2,
+    width: 36,
+    height: 36,
+    alignItems: 'flex-start',
+    justifyContent: 'center',
   },
-  backLabel: {
-    fontFamily: Fonts.sans,
-    fontSize: 16,
-    color: Brand.charcoal,
-  },
+  headerSpacer: { width: 36 },
   brandTitle: {
     fontFamily: Fonts.sansSemiBold,
     fontSize: 13,
     color: Brand.primaryBrown,
     letterSpacing: 4,
-  },
-  brandTitleCentered: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    textAlign: 'center',
-    zIndex: 1,
   },
   animatedShell: { flex: 1, overflow: 'hidden' },
   animatedInner: { flex: 1 },
