@@ -77,7 +77,7 @@ export default function MeTab() {
           <View style={styles.section}>
             <DiaryBanner
               reflectionCount={reflections.length}
-              onPress={() => router.push('/tools')}
+              onPress={() => router.push('/diary')}
             />
           </View>
         </ScrollView>
