@@ -7,8 +7,7 @@ import { Brand, Fonts, Spacing } from '@/constants/theme';
 
 type Props = {
   displayName?: string;
-  evolutionaryState?: string | null;
-  streakDays?: number;
+  evolutionaryState: string;
 };
 
 function initials(name?: string) {
@@ -18,15 +17,8 @@ function initials(name?: string) {
   return (parts[0]!.charAt(0) + parts[parts.length - 1]!.charAt(0)).toUpperCase();
 }
 
-function inferState(streak: number): string {
-  if (streak >= 21) return 'Habitando el presente';
-  if (streak >= 7) return 'Aprendiendo a regularte';
-  if (streak >= 3) return 'Empezando a escucharte';
-  return 'Tu camino comienza aquí';
-}
-
-export function ProfileHero({ displayName, evolutionaryState, streakDays = 0 }: Props) {
-  const state = evolutionaryState ?? inferState(streakDays);
+export function ProfileHero({ displayName, evolutionaryState }: Props) {
+  const state = evolutionaryState;
 
   return (
     <View style={styles.wrap}>

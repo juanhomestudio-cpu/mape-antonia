@@ -13,6 +13,7 @@ import { SanctuaryBackground } from '@/components/home/SanctuaryBackground';
 import { ThemedText } from '@/components/themed-text';
 import { Brand, Fonts, Spacing } from '@/constants/theme';
 import { useArchetype } from '@/hooks/use-archetype';
+import { useEvolutionaryState } from '@/hooks/use-evolutionary-state';
 import { useMyLetters } from '@/hooks/use-letters';
 import { useMoodHistory } from '@/hooks/use-today-mood';
 import { useProfile } from '@/hooks/use-profile';
@@ -28,6 +29,7 @@ export default function MeTab() {
   const { data: badges = [] } = useMyRewards({ kinds: ['badge'] });
   const letters = useMyLetters();
   const { data: reflections = [] } = useMyReflections();
+  const evolutionaryState = useEvolutionaryState();
 
   return (
     <View style={styles.container}>
@@ -39,8 +41,7 @@ export default function MeTab() {
         <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
           <ProfileHero
             displayName={profile?.display_name}
-            evolutionaryState={profile?.evolutionary_state}
-            streakDays={streak?.current_streak ?? 0}
+            evolutionaryState={evolutionaryState}
           />
 
           {archetype && (

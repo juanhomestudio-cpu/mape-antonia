@@ -2,46 +2,78 @@ import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Link } from 'expo-router';
 
+import { SanctuaryBackground } from '@/components/home/SanctuaryBackground';
 import { ThemedText } from '@/components/themed-text';
 import { Button } from '@/components/ui/Button';
-import { Brand, Spacing } from '@/constants/theme';
+import { Brand, Fonts, Spacing } from '@/constants/theme';
 
 export default function WelcomeScreen() {
   return (
-    <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
-      <View style={styles.body}>
-        <ThemedText style={styles.eyebrow}>Academia Funcional</ThemedText>
-        <ThemedText type="title" style={styles.title}>
-          Un viaje para volver a ti
-        </ThemedText>
-        <ThemedText style={styles.subtitle}>
-          Dos voces te acompañan: Antonia, para el cuerpo. Mape, para la mente. No es una academia
-          ni un curso. Es un espacio para descubrirte.
-        </ThemedText>
-      </View>
+    <View style={styles.container}>
+      <SanctuaryBackground />
+      <SafeAreaView style={{ flex: 1 }} edges={['top', 'bottom']}>
+        <View style={styles.body}>
+          <ThemedText type="caps" style={styles.eyebrow}>
+            Academia Funcional
+          </ThemedText>
+          <ThemedText style={styles.title}>
+            El lugar donde una mujer{'\n'}
+            por fin se siente{'\n'}
+            <ThemedText style={styles.titleAccent}>comprendida.</ThemedText>
+          </ThemedText>
+          <ThemedText style={styles.subtitle}>
+            Dos voces te acompañan, en igualdad: Antonia, médica funcional —el cuerpo—. Mape,
+            psicóloga clínica —la mente—.
+          </ThemedText>
+        </View>
 
-      <View style={styles.footer}>
-        <Link href="/register" asChild>
-          <Button label="Empezar mi camino" />
-        </Link>
-        <Link href="/sign-in" asChild>
-          <Button label="Ya tengo cuenta" variant="ghost" />
-        </Link>
-      </View>
-    </SafeAreaView>
+        <View style={styles.footer}>
+          <Link href="/register" asChild>
+            <Button label="Empezar mi camino" />
+          </Link>
+          <Link href="/sign-in" asChild>
+            <Button label="Ya tengo cuenta" variant="ghost" />
+          </Link>
+        </View>
+      </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: Brand.bone, padding: Spacing.four },
-  body: { flex: 1, justifyContent: 'center' },
+  body: { flex: 1, justifyContent: 'center', gap: Spacing.three },
   eyebrow: {
-    textTransform: 'uppercase',
-    letterSpacing: 2,
     color: Brand.terracotta,
-    marginBottom: Spacing.three,
+    letterSpacing: 3,
+    textAlign: 'center',
   },
-  title: { color: Brand.charcoal, marginBottom: Spacing.three, fontSize: 32, lineHeight: 38 },
-  subtitle: { color: Brand.textSoft, lineHeight: 26, fontSize: 16 },
+  title: {
+    fontFamily: Fonts.serif,
+    fontStyle: 'italic',
+    fontSize: 36,
+    lineHeight: 46,
+    color: Brand.primaryBrown,
+    textAlign: 'center',
+    fontWeight: '300',
+    marginTop: Spacing.three,
+  },
+  titleAccent: {
+    fontFamily: Fonts.serifBold,
+    fontSize: 36,
+    lineHeight: 46,
+    color: Brand.charcoal,
+    fontStyle: 'italic',
+  },
+  subtitle: {
+    fontFamily: Fonts.sans,
+    fontSize: 16,
+    lineHeight: 26,
+    color: Brand.textSoft,
+    textAlign: 'center',
+    marginTop: Spacing.four,
+    maxWidth: 340,
+    alignSelf: 'center',
+  },
   footer: { gap: Spacing.one, paddingBottom: Spacing.three },
 });
