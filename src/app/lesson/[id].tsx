@@ -1,8 +1,14 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { SymbolView } from 'expo-symbols';
+import Animated, {
+  SlideInLeft,
+  SlideInRight,
+  SlideOutLeft,
+  SlideOutRight,
+} from 'react-native-reanimated';
 
 import { ThemedText } from '@/components/themed-text';
 import { Button } from '@/components/ui/Button';
@@ -87,6 +93,28 @@ export default function LessonScreen() {
     }
   };
 
+  // Detección de dirección para animación: si avanzamos a una clase con
+  // position mayor → slide hacia la izquierda (entra desde la derecha).
+  // Si retrocedemos → slide hacia la derecha (entra desde la izquierda).
+  const prevPositionRef = useRef<number | null>(null);
+  const direction: 'forward' | 'backward' = useMemo(() => {
+    const prev = prevPositionRef.current;
+    const curr = lesson?.position ?? null;
+    if (prev === null || curr === null || curr === prev) return 'forward';
+    return curr > prev ? 'forward' : 'backward';
+  }, [lesson?.position]);
+
+  useEffect(() => {
+    if (lesson?.position !== undefined) prevPositionRef.current = lesson.position;
+  }, [lesson?.position]);
+
+  const enterAnim =
+    direction === 'forward'
+      ? SlideInRight.duration(280).springify().damping(18)
+      : SlideInLeft.duration(280).springify().damping(18);
+  const exitAnim =
+    direction === 'forward' ? SlideOutLeft.duration(180) : SlideOutRight.duration(180);
+
   return (
     <View style={styles.container}>
       <SanctuaryBackground />
@@ -105,6 +133,12 @@ export default function LessonScreen() {
           </Pressable>
         </View>
 
+        <View style={styles.animatedShell}>
+        <Animated.View
+          key={id}
+          entering={enterAnim}
+          exiting={exitAnim}
+          style={styles.animatedInner}>
         <KeyboardScrollView contentContainerStyle={styles.scroll}>
           {isLoading || !lesson ? (
             <ThemedText style={{ color: Brand.textSoft }}>Cargando…</ThemedText>
@@ -213,8 +247,11 @@ export default function LessonScreen() {
             </>
           )}
         </KeyboardScrollView>
+        </Animated.View>
+        </View>
 
-        {/* Navegador inferior entre clases */}
+        {/* Navegador inferior entre clases — fuera del wrapper animado para
+            que sólo el contenido transicione y la barra inferior se mantenga estable */}
         {lesson && siblings.length > 0 && id && (
           <LessonNavigator
             lessons={siblings}
@@ -246,6 +283,8 @@ const styles = StyleSheet.create({
     color: Brand.primaryBrown,
     letterSpacing: 4,
   },
+  animatedShell: { flex: 1, overflow: 'hidden' },
+  animatedInner: { flex: 1 },
   scroll: { paddingHorizontal: Spacing.four, paddingBottom: Spacing.five },
   titleFrame: {
     paddingHorizontal: Spacing.four,
