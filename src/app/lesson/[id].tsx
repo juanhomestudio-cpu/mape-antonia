@@ -121,16 +121,16 @@ export default function LessonScreen() {
       <SafeAreaView style={{ flex: 1 }} edges={['top', 'bottom']}>
         <Stack.Screen options={{ headerShown: false }} />
 
-        {/* Header — solo título centrado y botón cerrar a la derecha */}
+        {/* Header — chevron-izquierda en círculo a la izquierda, SANTUARIO centrado */}
         <View style={styles.header}>
-          <View style={styles.headerSide} />
-          <ThemedText style={styles.brandTitle}>SANTUARIO</ThemedText>
           <Pressable
             onPress={goBackToWorld}
             hitSlop={12}
-            style={({ pressed }) => [styles.closeBtn, pressed && { opacity: 0.6 }]}>
-            <SymbolView name="xmark" tintColor={Brand.primaryBrown} size={22} />
+            style={({ pressed }) => [styles.backBtn, pressed && { opacity: 0.7, transform: [{ scale: 0.95 }] }]}>
+            <SymbolView name="chevron.left" tintColor={Brand.primaryBrown} size={20} />
           </Pressable>
+          <ThemedText style={styles.brandTitle}>SANTUARIO</ThemedText>
+          <View style={styles.headerSide} />
         </View>
 
         <View style={styles.animatedShell}>
@@ -275,8 +275,17 @@ const styles = StyleSheet.create({
     paddingTop: Spacing.three,
     paddingBottom: Spacing.three,
   },
-  headerSide: { width: 36 },
-  closeBtn: { width: 36, alignItems: 'flex-end' },
+  headerSide: { width: 40 },
+  backBtn: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(255,255,255,0.6)',
+    borderWidth: 1,
+    borderColor: 'rgba(113,87,63,0.12)',
+  },
   brandTitle: {
     fontFamily: Fonts.sansSemiBold,
     fontSize: 13,

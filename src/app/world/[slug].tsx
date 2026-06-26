@@ -30,16 +30,16 @@ export default function WorldScreen() {
       <SafeAreaView style={{ flex: 1 }} edges={['top', 'bottom']}>
         <Stack.Screen options={{ headerShown: false }} />
 
-        {/* Header fijo arriba — back a la izquierda, SANTUARIO centrado */}
+        {/* Header fijo arriba — chevron izquierda en círculo, SANTUARIO centrado */}
         <View style={styles.header}>
           <Pressable
             onPress={() => router.replace('/path')}
             hitSlop={12}
-            style={({ pressed }) => [styles.backBtn, pressed && { opacity: 0.6 }]}>
-            <SymbolView name="chevron.left" tintColor={Brand.primaryBrown} size={22} />
+            style={({ pressed }) => [styles.backBtn, pressed && { opacity: 0.7, transform: [{ scale: 0.95 }] }]}>
+            <SymbolView name="chevron.left" tintColor={Brand.primaryBrown} size={20} />
           </Pressable>
           <ThemedText style={styles.brandTitle}>SANTUARIO</ThemedText>
-          <View style={styles.backBtn} />
+          <View style={styles.headerSide} />
         </View>
 
         <ScrollView contentContainerStyle={styles.scroll}>
@@ -105,7 +105,17 @@ const styles = StyleSheet.create({
     paddingTop: Spacing.three,
     paddingBottom: Spacing.three,
   },
-  backBtn: { width: 36, alignItems: 'flex-start' },
+  backBtn: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(255,255,255,0.6)',
+    borderWidth: 1,
+    borderColor: 'rgba(113,87,63,0.12)',
+  },
+  headerSide: { width: 40 },
   brandTitle: {
     fontFamily: Fonts.sansSemiBold,
     fontSize: 13,
