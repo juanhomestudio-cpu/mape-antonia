@@ -27,14 +27,20 @@ export function useWorldProgress(worldId: string | undefined) {
   });
 }
 
+// Invalidar todo lo que depende del progreso del usuario en clases —
+// usado por todas las mutaciones de avance.
+function invalidateProgressDeps(qc: ReturnType<typeof useQueryClient>) {
+  qc.invalidateQueries({ queryKey: ['lesson-progress'] });
+  qc.invalidateQueries({ queryKey: ['world-progress'] });
+  qc.invalidateQueries({ queryKey: ['next-lesson'] });
+  qc.invalidateQueries({ queryKey: ['m1-progress-for-state'] });
+}
+
 export function useStartLesson() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: startLesson,
-    onSuccess: (data) => {
-      qc.invalidateQueries({ queryKey: ['lesson-progress'] });
-      qc.invalidateQueries({ queryKey: ['world-progress'] });
-    },
+    onSuccess: () => invalidateProgressDeps(qc),
   });
 }
 
@@ -42,10 +48,7 @@ export function useUpdateVideoProgress() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: updateVideoProgress,
-    onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['lesson-progress'] });
-      qc.invalidateQueries({ queryKey: ['world-progress'] });
-    },
+    onSuccess: () => invalidateProgressDeps(qc),
   });
 }
 
@@ -54,10 +57,9 @@ export function useSubmitMicroResponse() {
   return useMutation({
     mutationFn: submitMicroResponse,
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['lesson-progress'] });
-      qc.invalidateQueries({ queryKey: ['world-progress'] });
+      invalidateProgressDeps(qc);
       qc.invalidateQueries({ queryKey: ['user-rewards'] });
-      qc.invalidateQueries({ queryKey: ['user-streaks'] });
+      qc.invalidateQueries({ queryKey: ['streak'] });
     },
   });
 }
