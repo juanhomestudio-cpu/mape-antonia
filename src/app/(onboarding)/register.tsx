@@ -20,8 +20,11 @@ const schema = z.object({
   password: z.string().min(6, 'Mínimo 6 caracteres'),
   age: z
     .string()
-    .optional()
-    .refine((v) => !v || /^\d{1,3}$/.test(v), { message: 'Solo números' }),
+    .min(1, 'Ingresa tu edad')
+    .refine((v) => /^\d{1,3}$/.test(v), { message: 'Solo números' })
+    .refine((v) => Number(v) >= 14 && Number(v) <= 100, {
+      message: 'Una edad válida',
+    }),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -145,12 +148,12 @@ export default function RegisterScreen() {
             name="age"
             render={({ field: { value, onChange, onBlur } }) => (
               <TextField
-                label="Edad (opcional)"
+                label="Edad"
                 value={value}
                 onChangeText={onChange}
                 onBlur={onBlur}
                 keyboardType="number-pad"
-                helper="No es obligatorio. Si la compartes, la usamos para sugerencias más cercanas a ti."
+                helper="La usamos para acompañarte con contenido cercano a tu momento."
                 error={errors.age?.message ?? null}
               />
             )}

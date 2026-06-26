@@ -21,10 +21,6 @@ export default function WelcomeScreen() {
             por fin se siente{'\n'}
             <ThemedText style={styles.titleAccent}>comprendida.</ThemedText>
           </ThemedText>
-          <ThemedText style={styles.subtitle}>
-            Dos voces te acompañan, en igualdad: Antonia, médica funcional —el cuerpo—. Mape,
-            psicóloga clínica —la mente—.
-          </ThemedText>
         </View>
 
         <View style={styles.footer}>
@@ -64,16 +60,6 @@ const styles = StyleSheet.create({
     lineHeight: 46,
     color: Brand.charcoal,
     fontStyle: 'italic',
-  },
-  subtitle: {
-    fontFamily: Fonts.sans,
-    fontSize: 16,
-    lineHeight: 26,
-    color: Brand.textSoft,
-    textAlign: 'center',
-    marginTop: Spacing.four,
-    maxWidth: 340,
-    alignSelf: 'center',
   },
   footer: { gap: Spacing.one, paddingBottom: Spacing.three },
 });
