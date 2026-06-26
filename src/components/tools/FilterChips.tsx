@@ -28,7 +28,9 @@ export function FilterChips<T extends string>({ options, selected, onToggle }: P
               isOn && styles.chipOn,
               pressed && { opacity: 0.7 },
             ]}>
-            <ThemedText style={[styles.label, isOn && styles.labelOn]}>{opt.label}</ThemedText>
+            <ThemedText type="caps" style={[styles.label, isOn && styles.labelOn]}>
+              {opt.label}
+            </ThemedText>
           </Pressable>
         );
       })}
@@ -37,16 +39,16 @@ export function FilterChips<T extends string>({ options, selected, onToggle }: P
 }
 
 const styles = StyleSheet.create({
-  row: { gap: Spacing.two, paddingVertical: Spacing.one },
+  row: { gap: Spacing.two, paddingVertical: Spacing.one, paddingHorizontal: Spacing.half },
   chip: {
     paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.one + 2,
+    paddingVertical: Spacing.two,
     borderRadius: Radius.pill,
     borderWidth: 1,
-    borderColor: Brand.sand,
-    backgroundColor: 'transparent',
+    borderColor: 'rgba(113,87,63,0.2)',
+    backgroundColor: 'rgba(255,255,255,0.45)',
   },
-  chipOn: { backgroundColor: Brand.terracotta, borderColor: Brand.terracotta },
-  label: { fontSize: 13, color: Brand.charcoal },
-  labelOn: { color: Brand.white, fontWeight: '500' },
+  chipOn: { backgroundColor: Brand.primaryBrown, borderColor: Brand.primaryBrown },
+  label: { color: Brand.primaryBrown, letterSpacing: 1.2 },
+  labelOn: { color: Brand.white },
 });

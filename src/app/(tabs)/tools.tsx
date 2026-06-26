@@ -1,12 +1,14 @@
 import { useMemo, useState } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { SymbolView } from 'expo-symbols';
 
 import { ThemedText } from '@/components/themed-text';
 import { FilterChips } from '@/components/tools/FilterChips';
 import { ToolCard } from '@/components/tools/ToolCard';
 import { KeyboardScrollView } from '@/components/ui/KeyboardScrollView';
-import { Brand, Radius, Spacing } from '@/constants/theme';
+import { SanctuaryBackground } from '@/components/home/SanctuaryBackground';
+import { Brand, Fonts, Radius, Spacing } from '@/constants/theme';
 import { useMyRewards } from '@/hooks/use-rewards';
 import type { Database } from '@/types/database';
 
@@ -42,81 +44,129 @@ export default function ToolsTab() {
   };
 
   return (
-    <SafeAreaView style={styles.container} edges={['top']}>
-      <KeyboardScrollView contentContainerStyle={styles.scroll}>
+    <View style={styles.container}>
+      <SanctuaryBackground />
+      <SafeAreaView style={{ flex: 1 }} edges={['top']}>
         <View style={styles.header}>
-          <ThemedText style={styles.eyebrow}>Herramientas</ThemedText>
-          <ThemedText type="title" style={styles.title}>
-            Tu biblioteca
-          </ThemedText>
-          <ThemedText style={styles.subtitle}>
-            Todo lo que has desbloqueado: rituales, cartas e insignias.
-          </ThemedText>
+          <ThemedText style={styles.brandTitle}>SANTUARIO</ThemedText>
         </View>
 
-        <TextInput
-          value={search}
-          onChangeText={setSearch}
-          placeholder="Buscar…"
-          placeholderTextColor={Brand.sand}
-          style={styles.search}
-        />
-
-        <View style={styles.filters}>
-          <FilterChips
-            options={KIND_OPTIONS}
-            selected={kinds}
-            onToggle={(v) => toggle(kinds, setKinds, v)}
-          />
-          <FilterChips
-            options={VOICE_OPTIONS}
-            selected={voices}
-            onToggle={(v) => toggle(voices, setVoices, v)}
-          />
-        </View>
-
-        {isLoading ? (
-          <ThemedText style={styles.empty}>Cargando…</ThemedText>
-        ) : rewards.length === 0 ? (
-          <ThemedText style={styles.empty}>
-            Aún no has desbloqueado herramientas. Sigue avanzando — irán apareciendo aquí.
-          </ThemedText>
-        ) : (
-          <View style={styles.list}>
-            {rewards.map((r) => (
-              <ToolCard key={r.id} item={r} />
-            ))}
+        <KeyboardScrollView contentContainerStyle={styles.scroll}>
+          {/* Encabezado de sección */}
+          <View style={styles.hero}>
+            <ThemedText type="caps" style={styles.eyebrow}>
+              Tu legado
+            </ThemedText>
+            <ThemedText style={styles.title}>Tu biblioteca</ThemedText>
+            <ThemedText style={styles.subtitle}>
+              Todo lo que has desbloqueado: rituales, cartas e insignias.
+            </ThemedText>
           </View>
-        )}
-      </KeyboardScrollView>
-    </SafeAreaView>
+
+          {/* Buscador */}
+          <View style={styles.searchWrap}>
+            <SymbolView name="magnifyingglass" tintColor={Brand.textFaint} size={18} />
+            <TextInput
+              value={search}
+              onChangeText={setSearch}
+              placeholder="Buscar…"
+              placeholderTextColor={Brand.textFaint}
+              style={styles.searchInput}
+            />
+          </View>
+
+          <View style={styles.filters}>
+            <FilterChips
+              options={KIND_OPTIONS}
+              selected={kinds}
+              onToggle={(v) => toggle(kinds, setKinds, v)}
+            />
+            <FilterChips
+              options={VOICE_OPTIONS}
+              selected={voices}
+              onToggle={(v) => toggle(voices, setVoices, v)}
+            />
+          </View>
+
+          {isLoading ? (
+            <ThemedText style={styles.empty}>Cargando…</ThemedText>
+          ) : rewards.length === 0 ? (
+            <View style={styles.emptyState}>
+              <SymbolView name="sparkles" tintColor={Brand.outline} size={32} />
+              <ThemedText style={styles.empty}>
+                Aún no has desbloqueado herramientas. Sigue avanzando — irán apareciendo aquí.
+              </ThemedText>
+            </View>
+          ) : (
+            <View style={styles.list}>
+              {rewards.map((r) => (
+                <ToolCard key={r.id} item={r} />
+              ))}
+            </View>
+          )}
+        </KeyboardScrollView>
+      </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: Brand.bone },
-  scroll: { padding: Spacing.four, paddingBottom: Spacing.six },
-  header: { marginBottom: Spacing.three },
-  eyebrow: {
-    textTransform: 'uppercase',
-    letterSpacing: 2,
-    color: Brand.textSoft,
-    marginBottom: Spacing.two,
+  header: { alignItems: 'center', paddingTop: Spacing.three, paddingBottom: Spacing.three },
+  brandTitle: {
+    fontFamily: Fonts.sansSemiBold,
+    fontSize: 13,
+    color: Brand.primaryBrown,
+    letterSpacing: 4,
   },
-  title: { color: Brand.charcoal, fontSize: 28, marginBottom: Spacing.two },
-  subtitle: { color: Brand.textSoft, fontSize: 14, lineHeight: 20 },
-  search: {
-    minHeight: 44,
-    paddingHorizontal: Spacing.three,
-    backgroundColor: Brand.surfaceLow,
-    borderRadius: Radius.md,
-    borderWidth: 1,
-    borderColor: Brand.sand,
+  scroll: { paddingHorizontal: Spacing.four, paddingBottom: Spacing.six * 2 },
+  hero: { alignItems: 'center', gap: Spacing.two, marginBottom: Spacing.five, paddingTop: Spacing.three },
+  eyebrow: { color: Brand.primaryBrown, opacity: 0.6, letterSpacing: 2.4 },
+  title: {
+    fontFamily: Fonts.serif,
+    fontSize: 36,
+    lineHeight: 42,
     color: Brand.charcoal,
-    fontSize: 15,
-    marginBottom: Spacing.two,
+    textAlign: 'center',
   },
-  filters: { gap: Spacing.one, marginBottom: Spacing.three },
-  empty: { color: Brand.textSoft, fontSize: 14, lineHeight: 22, marginTop: Spacing.three },
-  list: { gap: Spacing.two },
+  subtitle: {
+    fontFamily: Fonts.sans,
+    fontStyle: 'italic',
+    fontSize: 15,
+    lineHeight: 22,
+    color: Brand.textSoft,
+    textAlign: 'center',
+    maxWidth: 320,
+    marginTop: Spacing.one,
+  },
+  searchWrap: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.two,
+    paddingHorizontal: Spacing.four,
+    backgroundColor: 'rgba(255,255,255,0.55)',
+    borderRadius: Radius.pill,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.7)',
+    marginBottom: Spacing.three,
+    minHeight: 48,
+  },
+  searchInput: {
+    flex: 1,
+    fontFamily: Fonts.sans,
+    fontSize: 15,
+    color: Brand.charcoal,
+  },
+  filters: { gap: Spacing.two, marginBottom: Spacing.four },
+  emptyState: { alignItems: 'center', gap: Spacing.three, marginTop: Spacing.six },
+  empty: {
+    fontFamily: Fonts.sans,
+    fontStyle: 'italic',
+    color: Brand.textSoft,
+    fontSize: 14,
+    lineHeight: 22,
+    textAlign: 'center',
+    maxWidth: 280,
+  },
+  list: { gap: Spacing.three },
 });
