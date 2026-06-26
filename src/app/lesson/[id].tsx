@@ -7,6 +7,7 @@ import { SymbolView } from 'expo-symbols';
 import { ThemedText } from '@/components/themed-text';
 import { Button } from '@/components/ui/Button';
 import { KeyboardScrollView } from '@/components/ui/KeyboardScrollView';
+import { LessonNavigator } from '@/components/lesson/LessonNavigator';
 import { ReflectionPrompt } from '@/components/lesson/ReflectionPrompt';
 import { VimeoPlayer } from '@/components/lesson/VimeoPlayer';
 import { SanctuaryBackground } from '@/components/home/SanctuaryBackground';
@@ -18,6 +19,7 @@ import {
   useStartLesson,
   useSubmitMicroResponse,
   useUpdateVideoProgress,
+  useWorldProgress,
 } from '@/hooks/use-lesson-progress';
 
 export default function LessonScreen() {
@@ -28,6 +30,7 @@ export default function LessonScreen() {
   const updateProgressMutation = useUpdateVideoProgress();
   const submitMicro = useSubmitMicroResponse();
   const { data: siblings = [] } = useLessonsForWorld(lesson?.world_id);
+  const { data: worldProgress = [] } = useWorldProgress(lesson?.world_id);
 
   useEffect(() => {
     if (id) startMutation.mutate(id);
@@ -54,7 +57,12 @@ export default function LessonScreen() {
   const microDone = progress?.required_micro_done ?? false;
   const lessonCompleted = progress?.status === 'completed';
   const accent = lesson ? VoiceTokens[lesson.voice].accent : Brand.terracotta;
-  const voiceLabel = lesson?.voice === 'antonia' ? 'con Antonia Cardona' : lesson?.voice === 'mape' ? 'con Mape' : 'A dos voces';
+  const voiceLabel =
+    lesson?.voice === 'antonia'
+      ? 'con Antonia Cardona'
+      : lesson?.voice === 'mape'
+        ? 'con Mape'
+        : 'A dos voces';
   const durationMin = lesson?.duration_seconds ? Math.round(lesson.duration_seconds / 60) : null;
 
   const onSubmitReflection = (text: string) => {
@@ -71,26 +79,30 @@ export default function LessonScreen() {
     .sort((a, b) => a.position - b.position)
     .find((l) => lesson && l.position > lesson.position);
 
+  const goBackToWorld = () => {
+    if (lesson?.world) {
+      router.replace({ pathname: '/world/[slug]', params: { slug: lesson.world.slug } });
+    } else {
+      router.back();
+    }
+  };
+
   return (
     <View style={styles.container}>
       <SanctuaryBackground />
       <SafeAreaView style={{ flex: 1 }} edges={['top', 'bottom']}>
         <Stack.Screen options={{ headerShown: false }} />
 
-        {/* Header */}
+        {/* Header — solo título centrado y botón cerrar a la derecha */}
         <View style={styles.header}>
-          <Pressable
-            onPress={() =>
-              lesson?.world
-                ? router.replace({ pathname: '/world/[slug]', params: { slug: lesson.world.slug } })
-                : router.back()
-            }
-            hitSlop={12}
-            style={({ pressed }) => [styles.backBtn, pressed && { opacity: 0.6 }]}>
-            <SymbolView name="arrow.left" tintColor={Brand.primaryBrown} size={26} />
-          </Pressable>
+          <View style={styles.headerSide} />
           <ThemedText style={styles.brandTitle}>SANTUARIO</ThemedText>
-          <View style={styles.backBtn} />
+          <Pressable
+            onPress={goBackToWorld}
+            hitSlop={12}
+            style={({ pressed }) => [styles.closeBtn, pressed && { opacity: 0.6 }]}>
+            <SymbolView name="xmark" tintColor={Brand.primaryBrown} size={22} />
+          </Pressable>
         </View>
 
         <KeyboardScrollView contentContainerStyle={styles.scroll}>
@@ -115,7 +127,7 @@ export default function LessonScreen() {
                 </View>
               </View>
 
-              {/* Video player con borde redondeado generoso */}
+              {/* Player */}
               <View style={styles.playerWrap}>
                 {lesson.vimeo_id ? (
                   <VimeoPlayer
@@ -193,11 +205,7 @@ export default function LessonScreen() {
                     <Button
                       label="Cerraste el Mundo 1"
                       variant="secondary"
-                      onPress={() =>
-                        lesson.world
-                          ? router.replace({ pathname: '/world/[slug]', params: { slug: lesson.world.slug } })
-                          : router.back()
-                      }
+                      onPress={goBackToWorld}
                     />
                   )}
                 </View>
@@ -205,6 +213,16 @@ export default function LessonScreen() {
             </>
           )}
         </KeyboardScrollView>
+
+        {/* Navegador inferior entre clases */}
+        {lesson && siblings.length > 0 && id && (
+          <LessonNavigator
+            lessons={siblings}
+            currentId={id}
+            progress={worldProgress}
+            voice={lesson.voice}
+          />
+        )}
       </SafeAreaView>
     </View>
   );
@@ -220,14 +238,15 @@ const styles = StyleSheet.create({
     paddingTop: Spacing.three,
     paddingBottom: Spacing.three,
   },
-  backBtn: { width: 36, alignItems: 'flex-start' },
+  headerSide: { width: 36 },
+  closeBtn: { width: 36, alignItems: 'flex-end' },
   brandTitle: {
     fontFamily: Fonts.sansSemiBold,
     fontSize: 13,
     color: Brand.primaryBrown,
     letterSpacing: 4,
   },
-  scroll: { paddingHorizontal: Spacing.four, paddingBottom: Spacing.six * 2 },
+  scroll: { paddingHorizontal: Spacing.four, paddingBottom: Spacing.five },
   titleFrame: {
     paddingHorizontal: Spacing.four,
     paddingVertical: Spacing.five,
